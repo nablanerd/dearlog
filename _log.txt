@@ -188,4 +188,547 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 bash-3.2$ gitt[K status[1Pnpm startgit commit -m "installing npm packages"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .
+bash-3.2$ git add .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mmodified:   package.json[m
+	[32mnew file:   server/index.js[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+
+bash-3.2$ git status[1Padd .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mmodified:   package.json[m
+	[32mnew file:   server/index.js[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+
+bash-3.2$ git status[1Padd .
+bash-3.2$ git add .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mmodified:   package.json[m
+	[32mnew file:   server/index.js[m
+
+bash-3.2$ gt[Kit commn[Kit -m ""g"e"n"e"r"a"t"e" "i"n"d"e"x"."j"s" "a"n"d" "u"p"d"a"t"e" "p"a"c"k"a"g"e"."j"s"o"n" "w"i"t"h" "n"o"d"e"m"o"n"
+[master cfe44a2] generate index.js and update package.json with nodemon
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 57 insertions(+)
+ create mode 100644 server/index.js
+bash-3.2$ node_modules/.bin/sequelize init
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Created "config/config.json"
+Successfully created models folder at "/Applications/MAMP/htdocs/js/dearlog/models".
+Successfully created migrations folder at "/Applications/MAMP/htdocs/js/dearlog/migrations".
+Successfully created seeders folder at "/Applications/MAMP/htdocs/js/dearlog/seeders".
+bash-3.2$ mkdir [K[K[K[K[K[Kls
+_log.txt		migrations		node_modules		package.json		server
+config			models			package-lock.json	seeders
+bash-3.2$ mkdir db
+bash-3.2$ node_modules/.bin/sequelize model:generate --name Log --attributes title:string,content:text,created_at:date,heart:boolean,namespace:string,tag:string
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+New model was created at [94m/Applications/MAMP/htdocs/js/dearlog/models/log.js[39m .
+New migration was created at [94m/Applications/MAMP/htdocs/js/dearlog/migrations/20210220150841-create-log.js[39m .
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220150841-create-log: migrating =======
+== 20210220150841-create-log: migrated (0.015s)
+
+bash-3.2$ sqlite3 database.sqlite3
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> exit
+   ...> ;
+Error: near "exit": syntax error
+sqlite> .exit
+bash-3.2$ ls
+_log.txt		database.sqlite3	migrations		node_modules		package.json		server
+config			db			models			package-lock.json	seeders
+bash-3.2$ rm database.sqlite3 
+bash-3.2$ rm database.sqlite3 [C[C[C[C[C[C[C[C[C[Cls[Ksqlite3 database.sqlite3[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K./db/database-dev.sqlite3 
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> .schema
+CREATE TABLE `SequelizeMeta` (`name` VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY);
+CREATE TABLE `Logs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` VARCHAR(255), `content` TEXT, `created_at` DATETIME, `heart` TINYINT(1), `namespace` VARCHAR(255), `tag` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+sqlite> .schema[9G[K.schema[K[K[K[K[K[Kexit
+bash-3.2$ sqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[C[14Prm database[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Ksqlite3 database.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220150841-create-log: migrating =======
+== 20210220150841-create-log: migrated (0.019s)
+
+bash-3.2$ node_modules/.bin/sequelize db:migrate[C[C[C[C[C[C[C[C[C[C[4Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[C[14Prm database[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[14@sqlite3 ./db/database-dev[C[C[C[C[C[C[C[C[C
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> .schema
+CREATE TABLE `SequelizeMeta` (`name` VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY);
+CREATE TABLE `Logs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` VARCHAR(255), `content` TEXT, `heart` TINYINT(1), `namespace` VARCHAR(255), `tag` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+sqlite> .exit
+bash-3.2$ node_modules/.bin/sequelize seed:generate --name seed-contact
+
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+seeders folder at "/Applications/MAMP/htdocs/js/dearlog/seeders" already exists.
+New seed was created at [94m/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152051-seed-contact.js[39m .
 bash-3.2$ 
+bash-3.2$ node_modules/.bin/sequelize seed:generate --name seed-contact[K[K[K[K[K[K[Klog
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+seeders folder at "/Applications/MAMP/htdocs/js/dearlog/seeders" already exists.
+New seed was created at [94m/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js[39m .
+bash-3.2$ node_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: migrating =======
+
+[31mERROR:[39m SQLITE_ERROR: no such table: Log
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:allseed:generate --name seed-logcontact[C[C[C[C[C[C[C[C[C[C[27Psqlite3 ./db/database-dev.sqlite3 [K
+SQLite version 3.8.5 2014-08-15 22:37:57
+Enter ".help" for usage hints.
+sqlite> .schema
+CREATE TABLE `SequelizeMeta` (`name` VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY);
+CREATE TABLE `Logs` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` VARCHAR(255), `content` TEXT, `heart` TINYINT(1), `namespace` VARCHAR(255), `tag` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+sqlite> .exit
+bash-3.2$ sqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: migrating =======
+== 20210220152118-seed-log: migrated (0.007s)
+
+bash-3.2$ mp[K[Knpm install --save moe[Kment
+[?25l⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠧ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠏ rollbackFailedOptional: [34;40mverb[0m [35mnpm-session[0m 544b27c8b12a2eb8[0m[K⸨[90m░░░░░░░░░░░░░░░░░░[0m⸩ ⠴ loadIdealTree:loadAllDepsIntoIdealTree: [7msill[0m [35minstall[0m loadIdealTree[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠏ loadExtraneous: [7msill[0m [35mremoveObsoleteDep[0m removing moment@2.29.1 from the tree as its been replaced by a newer version or is no longer require[0m[K⸨[7m      [27m[90m░░░░░░░░░░░░[0m⸩ ⠼ diffTrees: [7msill[0m [35minstall[0m generateActionsToTake[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠙ postinstall: [7msill[0m [35minstall[0m executeActions[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠴ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m       [27m[90m░░░░░░░░░░░[0m⸩ ⠇ extract:moment: [34;40mverb[0m [35mlock[0m using /Users/julienhimmer/.npm/_locks/staging-23c06d81d95126f9.lock for /Applications/MAMP/htdocs/js/dearlog/node[0m[K⸨[7m            [27m[90m░░░░░░[0m⸩ ⠏ remove:moment: [7msill[0m [35mdoSerial[0m remove 10[0m[K⸨[7m            [27m[90m░░░░░░[0m⸩ ⠏ remove:moment: [7msill[0m [35mdoSerial[0m remove 10[0m[K⸨[7m            [27m[90m░░░░░░[0m⸩ ⠸ finalize:moment: [7msill[0m [35mdoSerial[0m finalize 10[0m[K⸨[7m            [27m[90m░░░░░░[0m⸩ ⠹ postinstall: [32minfo[0m [35mlifecycle[0m moment@2.29.1~postinstall: moment@2.29.1[0m[K⸨[7m            [27m[90m░░░░░░[0m⸩ ⠴ postinstall: [32minfo[0m [35mlifecycle[0m moment@2.29.1~postinstall: moment@2.29.1[0m[K[K[?25h[37;40mnpm[0m [0m[30;43mWARN[0m[35m[0m dearlog@1.0.0 No description
+[0m[37;40mnpm[0m [0m[30;43mWARN[0m[35m[0m dearlog@1.0.0 No repository field.
+[0m
++ moment@2.29.1
+updated 1 package and audited 354 packages in 4.8s
+found [92m0[0m vulnerabilities
+
+bash-3.2$ touch[K[K[K[K[Kmkdir sandboc[Kx
+bash-3.2$ touch s
+sandbox/ seeders/ server/  
+bash-3.2$ touch sandbox/moment.js
+bash-3.2$ node sanf[Kdbox/moment.js 
+bash-3.2$ node sandbox/moment.js 
+2021-02-20 16:33:49
+bash-3.2$ node sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[K[K[Kudno[K[K[Kndo
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+== 20210220152118-seed-log: reverted (0.003s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+Options:
+  --version          Affiche le numéro de version                                                                                                         [booléen]
+  --help             Affiche de l'aide                                                                                                                    [booléen]
+  --env              The environment to run the command in                                                            [chaine de caractère] [défaut: "development"]
+  --config           The path to the config file                                                                                              [chaine de caractère]
+  --options-path     The path to a JSON file with additional options                                                                          [chaine de caractère]
+  --migrations-path  The path to the migrations folder                                                                 [chaine de caractère] [défaut: "migrations"]
+  --seeders-path     The path to the seeders folder                                                                       [chaine de caractère] [défaut: "seeders"]
+  --models-path      The path to the models folder                                                                         [chaine de caractère] [défaut: "models"]
+  --url              The database connection string to use. Alternative to using --config files                                               [chaine de caractère]
+  --debug            When available show various debug information                                                                        [booléen] [défaut: false]
+  --seed             List of seed files                                                                                                                   [tableau]
+
+Error: Cannot find module 'sequelize/types/lib/operators'
+Require stack:
+- /Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/migration.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/index.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/core/migrator.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/commands/migrate.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/sequelize
+[90m    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:794:15)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:687:27)[39m
+[90m    at Module.require (internal/modules/cjs/loader.js:849:19)[39m
+[90m    at require (internal/modules/cjs/helpers.js:74:18)[39m
+    at Object.<anonymous> (/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js:5:16)
+[90m    at Module._compile (internal/modules/cjs/loader.js:956:30)[39m
+[90m    at Object.Module._extensions..js (internal/modules/cjs/loader.js:973:10)[39m
+[90m    at Module.load (internal/modules/cjs/loader.js:812:32)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:724:14)[39m
+[90m    at Module.require (internal/modules/cjs/loader.js:849:19)[39m
+[90m    at require (internal/modules/cjs/helpers.js:74:18)[39m
+    at Migration.migration (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:75:12)
+    at /Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:121:37
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:9:103)
+    at _next (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:11:194) {
+  code: [32m'MODULE_NOT_FOUND'[39m,
+  requireStack: [
+    [32m'/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/migration.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/index.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/core/migrator.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/commands/migrate.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/sequelize'[39m
+  ]
+}
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+Options:
+  --version          Affiche le numéro de version                                                                                                         [booléen]
+  --help             Affiche de l'aide                                                                                                                    [booléen]
+  --env              The environment to run the command in                                                            [chaine de caractère] [défaut: "development"]
+  --config           The path to the config file                                                                                              [chaine de caractère]
+  --options-path     The path to a JSON file with additional options                                                                          [chaine de caractère]
+  --migrations-path  The path to the migrations folder                                                                 [chaine de caractère] [défaut: "migrations"]
+  --seeders-path     The path to the seeders folder                                                                       [chaine de caractère] [défaut: "seeders"]
+  --models-path      The path to the models folder                                                                         [chaine de caractère] [défaut: "models"]
+  --url              The database connection string to use. Alternative to using --config files                                               [chaine de caractère]
+  --debug            When available show various debug information                                                                        [booléen] [défaut: false]
+  --seed             List of seed files                                                                                                                   [tableau]
+
+Error: Cannot find module 'sequelize/types/lib/operators'
+Require stack:
+- /Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/migration.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/index.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/core/migrator.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/commands/migrate.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/sequelize
+[90m    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:794:15)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:687:27)[39m
+[90m    at Module.require (internal/modules/cjs/loader.js:849:19)[39m
+[90m    at require (internal/modules/cjs/helpers.js:74:18)[39m
+    at Object.<anonymous> (/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js:5:16)
+[90m    at Module._compile (internal/modules/cjs/loader.js:956:30)[39m
+[90m    at Object.Module._extensions..js (internal/modules/cjs/loader.js:973:10)[39m
+[90m    at Module.load (internal/modules/cjs/loader.js:812:32)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:724:14)[39m
+[90m    at Module.require (internal/modules/cjs/loader.js:849:19)[39m
+[90m    at require (internal/modules/cjs/helpers.js:74:18)[39m
+    at Migration.migration (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:75:12)
+    at /Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:121:37
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:9:103)
+    at _next (/Applications/MAMP/htdocs/js/dearlog/node_modules/[4mumzug[24m/lib/migration.js:11:194) {
+  code: [32m'MODULE_NOT_FOUND'[39m,
+  requireStack: [
+    [32m'/Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/migration.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/index.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/core/migrator.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/commands/migrate.js'[39m,
+    [32m'/Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/sequelize'[39m
+  ]
+}
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+
+[31mERROR:[39m Cannot find module 'sequelize/types/lib/operators'
+Require stack:
+- /Applications/MAMP/htdocs/js/dearlog/seeders/20210220152118-seed-log.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/migration.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/umzug/lib/index.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/core/migrator.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/commands/migrate.js
+- /Applications/MAMP/htdocs/js/dearlog/node_modules/sequelize-cli/lib/sequelize
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+== 20210220152118-seed-log: reverted (0.002s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+DOWN
+== 20210220152118-seed-log: reverted (0.001s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: reverting =======
+== 20210220152118-seed-log: reverted (0.008s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: migrating =======
+
+[31mERROR:[39m SQLITE_ERROR: no such table: Logs
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:allundo:all[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:allseed:generate --name seed-log
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+seeders folder at "/Applications/MAMP/htdocs/js/dearlog/seeders" already exists.
+New seed was created at [94m/Applications/MAMP/htdocs/js/dearlog/seeders/20210220154527-seed-log.js[39m .
+bash-3.2$ node_modules/.bin/sequelize seed:generate --name seed-log[18Pdb:seed:allundo:all[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[C[C[C[C[C_modules/.bin/sequelize db:seed:undo[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:allseed:generate --name seed-logcontact[C[C[C[C[C[C[C[C[C[C[27Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migrate[C[C[C[C[C[C[C[C[C[C[4Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize seed:generate --name seed-contact[4Plog[18Pdb:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[C[14Ppm install --save moment[C[C[C[C[C[C[C[C[C[C[12Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[Cnode sandbox/moment.js [C[C[C[C[C[C[C[C[C[C[C[C[C[C_modules/.bin/sequelize db:seed:undo:all[5Pallseed:generate --name seed-log[C[C[C[C[C[C[C[C[C[C[Knode_modules/.bin/sequelize seed:generate --name seed-log[18Pdb:seed:allundo:all[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:allseed:generate --name seed-logcontact[C[C[C[C[C[C[C[C[C[C[27Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migrate[C[C[C[C[C[C[C[C[C[C[4Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrateseed:generate --name seed-log[18Pdb:seed:allundo:all[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17P sandbox/moment.js [C[C[C[C[C[C[C[C[C[Ctouch sandbox/moment.js[C[C[C[C[C[C[C[C[C[C[10Pmkdir sandbox[C[C[C[C[C[C[C[C[C[Cnpm install --save moment[C[C[C[C[C[C[C[C[C[C[Code_modules/.bin/sequelize db:seed:all[C[C[C[C[C[C[C[C[C[C[6Psqlite3 ./db/database-dev.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:seed:allseed:generate --name seed-logcontact[C[C[C[C[C[C[C[C[C[C[27Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migrate[C[C[C[C[C[C[C[C[C[C[4Psqlite3 ./db/database-dev.sqlite3 [C[C[C[C[C[C[C[C[C[C[14Prm database[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Ksqlite3 database.sqlite3[C[C[C[C[C[C[C[C[C[Cnode_modules/.bin/sequelize db:migratemodel:generate --name Log --attributes title:string,content:text,created_at:date,heart:boolean,namespace:string,tag:string
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+
+[31mERROR:[39m The file [94m/Applications/MAMP/htdocs/js/dearlog/models/log.js[39m already exists. Run command with --force to overwrite it.
+
+bash-3.2$ node_modules/.bin/sequelize model:generate --name Log --attributes title:string,content:text,created_at:date,heart:boolean,namespace:string,tag:string[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdb:migrate[Kseed:generate --name seed-log[18Pdb:seed:allundo:all[5Pall
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: migrating =======
+
+[31mERROR:[39m SQLITE_ERROR: no such table: Logs
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:allmodel:generate --name Log --attributes title:string,content:text,created_at:date,heart:boolean,namespace:string,tag:string[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdb:migrate[Kseed:generate --name seed-log[18Pdb:seed:allundo:all[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Knode_modules/.bin/sequelize model:generate --name Log --attributes title:string,content:text,heart:boolean,namespace:string,tag:string
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+
+[31mERROR:[39m The file [94m/Applications/MAMP/htdocs/js/dearlog/models/log.js[39m already exists. Run command with --force to overwrite it.
+
+bash-3.2$ node_modules/.bin/sequelize db:migrate
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220152118-seed-log: migrating =======
+
+[31mERROR:[39m SQLITE_ERROR: no such table: Logs
+
+bash-3.2$ node_modules/.bin/sequelize seed:generate --name seed-contact[K[K[K[K[K[K[Klog
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+seeders folder at "/Applications/MAMP/htdocs/js/dearlog/seeders" already exists.
+New seed was created at [94m/Applications/MAMP/htdocs/js/dearlog/seeders/20210220155817-seed-log.js[39m .
+bash-3.2$ node_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+
+[31mERROR:[39m moment is not defined
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+
+[31mERROR:[39m SQLITE_ERROR: no such table: Logs
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+
+[31mERROR:[39m DataTypes is not defined
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:allseed:generate --name seed-log[18Pdb:seed:all[1Pmigratemodel:generate --name Log --attributes title:string,content:text,heart:boolean,namespace:string,tag:string[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdb:migrate[K
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+No migrations were executed, database schema was already up to date.
+bash-3.2$ node_modules/.bin/sequelize db:migrate;[K:undoi[K
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220150841-create-log: reverting =======
+== 20210220150841-create-log: reverted (0.008s)
+
+bash-3.2$ node_modules/.bin/sequelize db:migrate:undo[K
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220150841-create-log: migrating =======
+== 20210220150841-create-log: migrated (0.015s)
+
+bash-3.2$ node_modules/.bin/sequelize db:migrate:undo[Kseed:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+== 20210220155817-seed-log: migrated (0.007s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:all[1Pmigrate:undo[Kseed:allseed:generate --name seed-log[18Pdb:seed:all[1Pmigratemodel:generate --name Log --attributes title:string,content:text,heart:boolean,namespace:string,tag:string[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdb:seed:all[Kmodel:generate --name Log --attributes title:string,content:text,created_at:date,heart:boolean,namespace:string,tag:string[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdb:migrate[Kseed:generate --name seed-log[18Pdb:seed:allundo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: reverting =======
+== 20210220155817-seed-log: reverted (0.006s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all[5Pall
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+== 20210220155817-seed-log: migrated (0.007s)
+
+bash-3.2$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+	[31mmodified:   package.json[m
+	[31mmodified:   server/index.js[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31mconfig/[m
+	[31mdb/[m
+	[31mmigrations/[m
+	[31mmodels/[m
+	[31msandbox/[m
+	[31mseeders/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ gi[K[Kgit add
