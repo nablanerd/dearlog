@@ -75,24 +75,6 @@ app.post('/api/logs', (req, res) => {
         })
 
       }
-  /*
-  app.put('/api/logs/:id', (req, res) => {
-    const id = parseInt(req.params.id)
-
-   
-        return db.Log.findByPk(id)
-        .then((log) => {
-            if(log ===  null) return res.status(400).send("ID unknow "+id)
-
-          const { title, content, heart, namespace, tag }  = req.body
-          return log.update({ title, content, heart, namespace, tag } )
-            .then(() => res.send(log))
-            .catch((err) => {
-              console.log('***Error updating contact', JSON.stringify(err))
-              res.status(400).send(err)
-            })
-        })
-*/
 
   });
 
