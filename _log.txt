@@ -827,4 +827,194 @@ Untracked files:
 	[31mpublic/[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
-bash-3.2$ git
+bash-3.2$ git add .
+bash-3.2$ git commit -m [5Padd .statusls[Kgit status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mnew file:   public/assets/css/style.css[m
+	[32mnew file:   public/index.html[m
+	[32mmodified:   server/index.js[m
+
+bash-3.2$ git status[1Padd .statusls[Kcd ..[3Plsgit status[1Padd .status[Kgit commit -m ""c"r"e"a"t"i"n"g" "p"u"b"c"l"i"[1P"[1P"[1P"l"i"c" "a"c"c"e"s"s" "a"n"d" "g"e"t" "p"o"t"[1P"s"s"[1P"t" "d"e"l"e"t"e" "p"u"t" "a"p"i"
+[master 5128e05] creating public access and get post delete put api
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 4 files changed, 163 insertions(+), 3 deletions(-)
+ create mode 100644 public/assets/css/style.css
+ create mode 100644 public/index.html
+ rewrite server/index.js (94%)
+bash-3.2$ git commit -m "creating public access and get post delete put api"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .statusls[Kcd ..[3Plscd ..git statustouch style.css[C[C[C[C[C[C[C[C[C[Ccd /Applications/MAMP/htdocs/js/dearlog/public/assets/css [C[C[C[C[C[C[C[C[C[C[32Pgit commit -m "set up ORM"[C[C[C[C[C[C[C[C[C[Ccd /Applications/MAMP/htdocs/js/dearlog/public/assets/css [C[C[C[C[C[C[C[C[C[C[32Pgit commit -m "set up ORM"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+	[31mmodified:   db/database-dev.sqlite3[m
+	[31mmodified:   server/index.js[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git statuscommit -m "creating public access and get post delete put api"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .statusls[Kcd ..[3Plscd ..git statustouch style.css[C[C[C[C[C[C[C[C[C[Ccd /Applications/MAMP/htdocs/js/dearlog/public/assets/css [C[C[C[C[C[C[C[C[C[C[32Pgit commit -m "set up ORM"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .statusnode_modules/.bin/sequelize db:seed:allundo:all[5Pall[1Pmigrateseed:allundo:all
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: reverting =======
+== 20210220155817-seed-log: reverted (0.006s)
+
+bash-3.2$ node_modules/.bin/sequelize db:seed:undo:all[C[C[C[C[C[C[C[C[C[Cgit status[Kcommit -m "creating public access and get post delete put api"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .statusls[Kcd ..[3Plscd ..git statustouch style.css[C[C[C[C[C[C[C[C[C[Ccd /Applications/MAMP/htdocs/js/dearlog/public/assets/css [C[C[C[C[C[C[C[C[C[C[32Pgit commit -m "set up ORM"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .statusnode_modules/.bin/sequelize db:seed:allundo:all[5Pall
+
+[4mSequelize CLI [Node: 12.13.0, CLI: 6.2.0, ORM: 6.5.0][24m
+
+Loaded configuration file "config/config.json".
+Using environment "development".
+== 20210220155817-seed-log: migrating =======
+== 20210220155817-seed-log: migrated (0.008s)
+
+bash-3.2$ ls
+_log.txt		db			models			package-lock.json	public			seeders
+config			migrations		node_modules		package.json		sandbox			server
+bash-3.2$ cd sandbox/
+bash-3.2$ node ./sn[K[Ks[Ksa[K[K[K[K[K[K[K[K[Kls
+moment.js
+bash-3.2$ node ./mon[Kment.js 
+/Applications/MAMP/htdocs/js/dearlog/sandbox/moment.js:5
+dateTime = moment( string)
+^
+
+ReferenceError: moment is not defined
+    at Object.<anonymous> (/Applications/MAMP/htdocs/js/dearlog/sandbox/moment.js:5:1)
+[90m    at Module._compile (internal/modules/cjs/loader.js:956:30)[39m
+[90m    at Object.Module._extensions..js (internal/modules/cjs/loader.js:973:10)[39m
+[90m    at Module.load (internal/modules/cjs/loader.js:812:32)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:724:14)[39m
+[90m    at Function.Module.runMain (internal/modules/cjs/loader.js:1025:10)[39m
+[90m    at internal/main/run_main_module.js:17:11[39m
+bash-3.2$ node ./moment.js 
+Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+Arguments: 
+[0] _isAMomentObject: true, _isUTC: false, _useUTC: false, _l: undefined, _i: 2021-02-20 17:59:52.485 +00:00, _f: undefined, _strict: undefined, _locale: [object Object]
+Error
+    at Function.createFromInputFallback (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:319:25)
+    at configFromString (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:2536:19)
+    at configFromInput (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:2977:13)
+    at prepareConfig (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:2960:13)
+    at createFromConfig (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:2927:44)
+    at createLocalOrUTC (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:3021:16)
+    at createLocal (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:3025:16)
+    at hooks (/Applications/MAMP/htdocs/js/dearlog/node_modules/moment/moment.js:16:29)
+    at Object.<anonymous> (/Applications/MAMP/htdocs/js/dearlog/sandbox/moment.js:7:12)
+    at Module._compile (internal/modules/cjs/loader.js:956:30)
+Moment<2021-02-20T18:59:52+01:00>
+bash-3.2$ node ./moment.js 
+/Applications/MAMP/htdocs/js/dearlog/sandbox/moment.js:12
+aus1_s =  moment.tz(string, dateFormat, region);
+                 ^
+
+TypeError: moment.tz is not a function
+    at Object.<anonymous> (/Applications/MAMP/htdocs/js/dearlog/sandbox/moment.js:12:18)
+[90m    at Module._compile (internal/modules/cjs/loader.js:956:30)[39m
+[90m    at Object.Module._extensions..js (internal/modules/cjs/loader.js:973:10)[39m
+[90m    at Module.load (internal/modules/cjs/loader.js:812:32)[39m
+[90m    at Function.Module._load (internal/modules/cjs/loader.js:724:14)[39m
+[90m    at Function.Module.runMain (internal/modules/cjs/loader.js:1025:10)[39m
+[90m    at internal/main/run_main_module.js:17:11[39m
+bash-3.2$ node ./moment.js 
+[36m[Function: format][39m
+bash-3.2$ node ./moment.js 
+2021-02-20T18:59:52+01:00
+bash-3.2$ node ./moment.js 
+2021-02-20T19:11:59+01:00
+bash-3.2$ node ./moment.js 
+20 February 19:11
+bash-3.2$ git -[Kstatus
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   ../_log.txt[m
+	[31mmodified:   ../config/config.json[m
+	[31mmodified:   ../db/database-dev.sqlite3[m
+	[31mmodified:   ../models/index.js[m
+	[31mmodified:   ../models/log.js[m
+	[31mmodified:   moment.js[m
+	[31mmodified:   ../server/index.js[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git status[Kgit statusnode ./moment.js [C[C[C[C[C[C[C[C[C[C[7Pgit status[K[K[K[K[K[Kadd .
+bash-3.2$ git commit -m "é"[K[K"a"p"i" "a"m"[1P"l"m"o"s"t" "f"i"n"i"s"h"e"d"
+[master a9ed598] api almost finished
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+bash-3.2$ git commit -m "api almost finished"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cadd .[Kstatus
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   ../_log.txt[m
+	[31mmodified:   ../config/config.json[m
+	[31mmodified:   ../db/database-dev.sqlite3[m
+	[31mmodified:   ../models/index.js[m
+	[31mmodified:   ../models/log.js[m
+	[31mmodified:   ../server/index.js[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   ../_log.txt[m
+	[31mmodified:   ../config/config.json[m
+	[31mmodified:   ../db/database-dev.sqlite3[m
+	[31mmodified:   ../models/index.js[m
+	[31mmodified:   ../models/log.js[m
+	[31mmodified:   ../server/index.js[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git statuscommit -m "api almost finished"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cadd .[K
+bash-3.2$ git add .status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   ../_log.txt[m
+	[31mmodified:   ../config/config.json[m
+	[31mmodified:   ../db/database-dev.sqlite3[m
+	[31mmodified:   ../models/index.js[m
+	[31mmodified:   ../models/log.js[m
+	[31mmodified:   ../server/index.js[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ 

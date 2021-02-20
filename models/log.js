@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+
+
   };
   Log.init({
     title: DataTypes.STRING,
