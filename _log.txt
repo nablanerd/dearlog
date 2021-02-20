@@ -1017,4 +1017,39 @@ Changes not staged for commit:
 	[31mmodified:   ../server/index.js[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
-bash-3.2$ 
+bash-3.2$ git status[1Padd .[K--all
+bash-3.2$ git add --all[3Pstatus
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   ../_log.txt[m
+	[32mmodified:   ../config/config.json[m
+	[32mmodified:   ../db/database-dev.sqlite3[m
+	[32mmodified:   ../models/index.js[m
+	[32mmodified:   ../models/log.js[m
+	[32mmodified:   ../server/index.js[m
+
+bash-3.2$ git statusadd --all[3Pstatus[1Padd .statuscommit -m "api almost finished" "v"2"
+[master bcb7b1d] api almost finished v2
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 6 files changed, 220 insertions(+), 13 deletions(-)
+bash-3.2$ git commit -m "api almost finished v2"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K
+On branch master
+nothing to commit, working tree clean
+bash-3.2$ exit
+exit
+
+Script done on Sat Feb 20 19:42:50 2021

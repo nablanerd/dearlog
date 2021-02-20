@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../models'); // new require for db object
 const path = require('path')
+const Joi = require('joi')
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,6 +30,8 @@ app.post('/api/logs', (req, res) => {
   });
   
   app.delete('/api/logs/:id', (req, res) => {
+
+    
     const id = parseInt(req.params.id)
     return db.Log.findByPk(id)
       .then((log) => {
@@ -42,6 +46,36 @@ app.post('/api/logs', (req, res) => {
       })
   });
   
+
+  app.put('/api/logs/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const idSchema = Joi.number();
+    const result = idSchema.validate(id); 
+    const { value, error } = result; 
+    const valid = error == null; 
+
+    if (!valid) { 
+      return res.status(422).json({ 
+        message: `PUT Invalid request ERROR: ${req.params.id}`, 
+        data: "body" 
+      }) 
+    } else { 
+
+        return db.Log.findByPk(id)
+        .then((log) => {
+
+          const { title, content, heart, namespace, tag }  = req.body
+          return log.update({ title, content, heart, namespace, tag } )
+            .then(() => res.send(log))
+            .catch((err) => {
+              console.log('***Error updating contact', JSON.stringify(err))
+              res.status(400).send(err)
+            })
+        })
+
+      }
+  /*
   app.put('/api/logs/:id', (req, res) => {
     const id = parseInt(req.params.id)
 
@@ -58,7 +92,7 @@ app.post('/api/logs', (req, res) => {
               res.status(400).send(err)
             })
         })
-
+*/
 
   });
 
