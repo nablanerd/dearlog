@@ -731,4 +731,100 @@ Untracked files:
 	[31mseeders/[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
-bash-3.2$ gi[K[Kgit add
+bash-3.2$ gi[K[Kgit add /[K.
+bash-3.2$ git add .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mnew file:   config/config.json[m
+	[32mnew file:   db/database-dev.sqlite3[m
+	[32mnew file:   migrations/20210220150841-create-log.js[m
+	[32mnew file:   models/index.js[m
+	[32mnew file:   models/log.js[m
+	[32mmodified:   package.json[m
+	[32mnew file:   sandbox/moment.js[m
+	[32mnew file:   seeders/20210220155817-seed-log.js[m
+	[32mmodified:   server/index.js[m
+
+bash-3.2$ git status[1Padd .statusnode_modules/.bin/sequelize db:seed:allundo:all[5Pall[C[C[C[C[C[C[C[C[C[Cgit status[K[1Padd .status[Kgit commit )[K-m[3Pstatus[1Padd .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   _log.txt[m
+	[32mnew file:   config/config.json[m
+	[32mnew file:   db/database-dev.sqlite3[m
+	[32mnew file:   migrations/20210220150841-create-log.js[m
+	[32mnew file:   models/index.js[m
+	[32mnew file:   models/log.js[m
+	[32mmodified:   package.json[m
+	[32mnew file:   sandbox/moment.js[m
+	[32mnew file:   seeders/20210220155817-seed-log.js[m
+	[32mmodified:   server/index.js[m
+
+bash-3.2$ git status[1Padd .status[K[K[K[K[K[Kcommit -me[K ""s"e"t" "O"R"M"uORM"pORM" ORM"
+[master d2d4b99] set up ORM
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 737 insertions(+), 3 deletions(-)
+ create mode 100644 config/config.json
+ create mode 100644 db/database-dev.sqlite3
+ create mode 100644 migrations/20210220150841-create-log.js
+ create mode 100644 models/index.js
+ create mode 100644 models/log.js
+ create mode 100644 sandbox/moment.js
+ create mode 100644 seeders/20210220155817-seed-log.js
+bash-3.2$ /Applications/MAMP/htdocs/js/dearlog/public/assets/css [C[C[C[C[C[C[C[C[C[C[1@c[1@d[1@ 
+bash-3.2$ touch style.css
+bash-3.2$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   ../../../_log.txt[m
+	[31mmodified:   ../../../server/index.js[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m../../[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ cd ..
+bash-3.2$ ls
+css
+bash-3.2$ cd ..
+bash-3.2$ cd ..
+bash-3.2$ ls
+_log.txt		db			models			package-lock.json	public			seeders
+config			migrations		node_modules		package.json		sandbox			server
+bash-3.2$ lscd ..[3Plscd ..git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+	[31mmodified:   server/index.js[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31mpublic/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git
