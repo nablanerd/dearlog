@@ -133,4 +133,59 @@ Changes not staged for commit:
 	[31mmodified:   package.json[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git add .
+bash-3.2$ git add .status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   .gitignore[m
+	[32mmodified:   _log.txt[m
+	[32mmodified:   package.json[m
+
+bash-3.2$ git commit -m ""i"n"s"t"a"l"l"i"n"g" "n"p"m" "p"a"c"k"a"g"e"s"
+[master 8a0472c] installing npm packages
+ Committer: julien himmer <julienhimmer@kgfgfgfgjhkjkljuhuyhythdesxdsxxdfghjvbnjlmp--jjun.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 94 insertions(+), 1 deletion(-)
+bash-3.2$ npm start
+
+> dearlog@1.0.0 start /Applications/MAMP/htdocs/js/dearlog
+> nodemon server/index.js
+
+[33m[nodemon] 2.0.7[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node server/index.js`[39m
+hello
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+^C
+bash-3.2$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   _log.txt[m
+	[31mmodified:   package.json[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31mserver/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ gitt[K status[1Pnpm startgit commit -m "installing npm packages"[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatus[K[1Padd .
 bash-3.2$ 
