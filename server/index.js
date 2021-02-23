@@ -3,11 +3,13 @@ const bodyParser = require('body-parser');
 const db = require('../models'); // new require for db object
 const path = require('path')
 const Joi = require('joi')
+const cors = require('cors');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '../public')));
+app.use(cors());
 
 app.get('/api/logs', (req, res) => {
     return db.Log.findAll()
@@ -31,7 +33,6 @@ app.post('/api/logs', (req, res) => {
   
   app.delete('/api/logs/:id', (req, res) => {
 
-    
     const id = parseInt(req.params.id)
     return db.Log.findByPk(id)
       .then((log) => {
@@ -80,6 +81,6 @@ app.post('/api/logs', (req, res) => {
 
   
 
-  app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+  app.listen(7827, () => {
+    console.log('Server is up on port 7827');
   });
