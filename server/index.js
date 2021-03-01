@@ -5,11 +5,57 @@ const path = require('path')
 const Joi = require('joi')
 const cors = require('cors');
 
+const cll = require ("./cll");
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(cors());
+
+app.get('/api/logs/nextprev/:id', (req, res) => {
+
+const id = parseInt(req.params.id)
+
+return db.Log.findAll({
+  attributes: ['id'],
+  order: [['createdAt', 'ASC']]
+})
+.then((ids) => {
+
+let next, prev;
+let ids_flat = ids.map(i => i.id)
+
+if(ids_flat.indexOf(id)<0)
+{
+ return res.status(422).json({ 
+        message: `Invalid request ERROR: ID ${req.params.id}`, 
+        data: "body" 
+      }) 
+}
+
+
+let index = ids_flat.indexOf(id)
+
+let pos_p = index-1 < 0 ? ids_flat.length-1 : index-1
+let pos_n = index+1 == ids_flat.length ? 0 : index+1
+
+prev = ids_flat[pos_p]
+next = ids_flat[pos_n]
+
+res.send({
+  prev:prev,
+  next:next
+})
+
+})
+.catch((err) => {
+        console.log('There was an error querying logs', JSON.stringify(err))
+        return res.send(err)
+      });
+
+
+})
 
 app.get('/api/logs', (req, res) => {
     return db.Log.findAll()
@@ -19,6 +65,17 @@ app.get('/api/logs', (req, res) => {
         return res.send(err)
       });
   });
+
+app.get('/api/logs/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+ 
+ return db.Log.findByPk(id)
+ .then((log) => res.send(log))
+ .catch((err) => {
+        console.log('There was an error querying log by id', JSON.stringify(err))
+        return res.send(err) 
+  });
+ });
 
 app.post('/api/logs', (req, res) => {
     const { title, content, heart, namespace, tag } = req.body
@@ -66,8 +123,8 @@ app.post('/api/logs', (req, res) => {
         return db.Log.findByPk(id)
         .then((log) => {
 
-          const { title, content, heart, namespace, tag }  = req.body
-          return log.update({ title, content, heart, namespace, tag } )
+          const { title, description, content, heart, namespace, tag }  = req.body
+          return log.update({ title, description, content, heart, namespace, tag } )
             .then(() => res.send(log))
             .catch((err) => {
               console.log('***Error updating contact', JSON.stringify(err))

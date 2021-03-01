@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Log.init({
     title: DataTypes.STRING,
+    description: DataTypes.STRING,
     content: DataTypes.TEXT,
     heart: DataTypes.BOOLEAN,
     namespace: DataTypes.STRING,

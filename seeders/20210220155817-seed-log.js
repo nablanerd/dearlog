@@ -27,6 +27,7 @@ module.exports = {
     return queryInterface.bulkInsert('Logs', [
 {
 title: '!foo',
+description :"!foo",
 content: '!foo',
 heart: true,
 namespace: '!foo',
@@ -36,6 +37,7 @@ updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
 },
 {
 title: 'bar',
+description :"bar",
 content: 'bar',
 heart: false,
 namespace: 'bar',
@@ -45,6 +47,7 @@ updatedAt: moment().format('YYYY-MM-DD HH:mm:ss')
 },
 {
 title: 'nerd',
+description :"nerd",
 content: 'nerd',
 heart: true,
 namespace: 'nerd',
