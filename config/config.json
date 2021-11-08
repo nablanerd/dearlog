@@ -21,8 +21,18 @@
     "dialect": "sqlite",
     "storage": ":memory"
   },
-  "production": {
-    "dialect": "sqlite",
-    "storage": "./db/database-prod.sqlite3"
+  "production": 
+  {
+
+    "host":"localhost",
+    "port":5432,
+    "dialect": "postgres",
+    "database":"dearlog",
+    "username":"postgres",
+    "password":"45zqD7N",    
+    "logging": false,
+    "use_env_variable": "DATABASE_URL"
+
+
   }
 }
