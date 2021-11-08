@@ -5,6 +5,18 @@
     "dateStrings": true
   },
  
+  "postgre_dev": {
+    "host":"localhost",
+    "port":5432,
+    "dialect": "postgres",
+    "database":"dearlog",
+    "username":"postgres",
+    "password":"45zqD7N",
+    "logging": false
+
+
+  },
+
   "test": {
     "dialect": "sqlite",
     "storage": ":memory"

@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      console.log(models);
+      Log.belongsTo(models.Namespace, { foreignKey: 'id_namespace', as: 'namespace'});
+     // models.Namespace.hasMany(Log, { foreignKey: 'id_namespace' });
+
+     Log.belongsToMany(models.Tag, { /* foreignKey: 'TagId', */ through: models.LogTags , as: 'tags'});
+
+
     }
 
 
@@ -21,8 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     content: DataTypes.TEXT,
     heart: DataTypes.BOOLEAN,
-    namespace: DataTypes.STRING,
-    tag: DataTypes.STRING
+    id_namespace: DataTypes.INTEGER,
+    tag: DataTypes.STRING,
+    type: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Log',
