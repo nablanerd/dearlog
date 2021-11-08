@@ -633,9 +633,12 @@ if (audioRange) {
  
 })
 
-server.listen(7827, () => {
-  console.log('Server is up on port 7827');
-  console.log('http://localhost:7827');
+const PORT = process.env.PORT || 8080;
+//7827
+
+server.listen(PORT, () => {
+  console.log('Server is up on port 8080');
+  //console.log('http://localhost:7827');
 
 });
 
