@@ -825,7 +825,15 @@ console.log("s3.getObject", e);
 checkout_object()
 .then(()=> {
 
-  streaming()
+
+  console.log( fs.existsSync(audioPath), fs.existsSync(audioPath));
+
+  res
+  .status(200)
+  .send('Hello server is running')
+  .end();
+
+ // streaming()
 
 })
 }
