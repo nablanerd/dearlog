@@ -801,13 +801,13 @@ app.get('/audio/:id', (req, res) => {
 
   const log = db.Log.findByPk(id)
 
-  console.log("log", log);
-/* .then(onlinePolicyStream)
+ 
+.then((log)=>  console.log("log", log) )
 .catch((err) => {
       console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
 })
- */
+
 
  
 })
