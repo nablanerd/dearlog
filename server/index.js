@@ -799,13 +799,15 @@ app.get('/audio/:id', (req, res) => {
   
   const id = parseInt(req.params.id)
 
-  db.Log.findByPk(id)
-.then(onlinePolicyStream)
+  const log = db.Log.findByPk(id)
+
+  console.log("log", log);
+/* .then(onlinePolicyStream)
 .catch((err) => {
       console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
 })
-
+ */
 
  
 })
