@@ -665,7 +665,7 @@ const onlinePolicyUpload = (stream, data) =>{
 
     });
   
-    return pass;
+    return passThrough;
   }
 
   save_file_temporary()
