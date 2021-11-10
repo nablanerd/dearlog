@@ -745,7 +745,7 @@ const onlinePolicyStream = (log)=> {
   
   const audioPath = name+ '.' + ext;
   
-    if (!fs.existsSync(audioPath))
+ /*    if (!fs.existsSync(audioPath))
     {
       const stream = fs.createWriteStream(audioPath)
     
@@ -760,7 +760,7 @@ const onlinePolicyStream = (log)=> {
 console.log("s3.getObject", e);
 
   }
-    }
+    } */
 
   const audioStat = fs.statSync(audioPath);
   const fileSize = audioStat.size;
@@ -783,14 +783,25 @@ console.log("s3.getObject", e);
           'Content-Type': 'audio/webm',
       };
       res.writeHead(206, head);
-      file.pipe(res);
+
+      s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
+      .createReadStream()
+      .pipe(res)
+
+      //file.pipe(res);
   } else {
       const head = {
           'Content-Length': fileSize,
           'Content-Type': 'audio/webm',
       };
       res.writeHead(200, head);
-      fs.createReadStream(audioPath).pipe(res);
+      
+      s3.getObject({Bucket: "dearlogbucket", Key: "2021_11_9_9_58_43_69.webm"})
+      .createReadStream()
+      .pipe(res)
+
+
+      //fs.createReadStream(audioPath).pipe(res);
   }
 
 }
@@ -799,10 +810,9 @@ app.get('/audio/:id', (req, res) => {
   
   const id = parseInt(req.params.id)
 
-  const log = db.Log.findByPk(id)
-
+  db.Log.findByPk(id)
  
-.then((log)=>  console.log("log", log) )
+.then(onlinePolicyStream)
 .catch((err) => {
       console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
