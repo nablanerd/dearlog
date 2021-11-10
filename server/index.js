@@ -747,7 +747,7 @@ const onlinePolicyStream = (log)=> {
   const checkout_object = () => {
     return new Promise((resolve, reject) => {
   
-      const stream = fs.createWriteStream(filename)
+      const stream = fs.createWriteStream(audioPath)
 
       s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
       .createReadStream()
