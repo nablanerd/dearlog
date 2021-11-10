@@ -521,7 +521,7 @@ res.status(400).send({})
 STREAM
 */
 
-const onfflinePolicyUpload = (stream, data) => {
+const offlinePolicyUpload = (stream, data) => {
 
   console.log(data.createdAt)
   const createdAt = data.createdAt
@@ -654,7 +654,8 @@ const onlinePolicyUpload = (stream, data) =>{
     const params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: filename, // File name you want to save as in S3
-        Body: passThrough
+        Body: passThrough,
+
     };
 
     s3.upload(params, function(err, data) {
@@ -690,9 +691,7 @@ io.of('/audio').on('connection', function(socket) {
 });
 
 
-const onfflinePolicyStream = (log)=> {
-
-
+const offlinePolicyStream = (log)=> {
 
   const dateObject = convertDate2Objet(log.createdAt)
 
@@ -745,6 +744,19 @@ const onlinePolicyStream = (log)=> {
   
   const audioPath = name+ '.' + ext;
   
+  const checkout_object = () => {
+    return new Promise((resolve, reject) => {
+  
+      s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
+      .createReadStream()
+      .pipe(stream)
+      .on('close', () => resolve())
+      .on('error', ()=> reject())
+
+    })
+  }
+
+
  /*    if (!fs.existsSync(audioPath))
     {
       const stream = fs.createWriteStream(audioPath)
@@ -762,6 +774,7 @@ console.log("s3.getObject", e);
   }
     } */
 
+    const streaming = ()=> {
   const audioStat = fs.statSync(audioPath);
   const fileSize = audioStat.size;
   const audioRange = req.headers.range;
@@ -788,7 +801,9 @@ console.log("s3.getObject", e);
       .createReadStream()
       .pipe(res) */
 
-      //file.pipe(res);
+      //src.pipe(res)
+
+      file.pipe(res);
   } else {
       const head = {
           'Content-Length': fileSize,
@@ -800,10 +815,17 @@ console.log("s3.getObject", e);
       .createReadStream()
       .pipe(res) */
 
-
-      //fs.createReadStream(audioPath).pipe(res);
+      fs.createReadStream(audioPath).pipe(res);
   }
 
+}
+
+checkout_object()
+.then(()=> {
+
+  streaming()
+
+})
 }
 
 app.get('/audio/:id', (req, res) => {
