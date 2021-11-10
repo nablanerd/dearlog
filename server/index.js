@@ -749,10 +749,17 @@ const onlinePolicyStream = (log)=> {
     {
       const stream = fs.createWriteStream(audioPath)
     
+      try {
     s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
     .createReadStream()
     .pipe(stream);
     
+  }
+  catch (e)
+  {
+console.log("s3.getObject", e);
+
+  }
     }
 
   const audioStat = fs.statSync(audioPath);
