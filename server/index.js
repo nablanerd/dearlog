@@ -645,7 +645,7 @@ const onlinePolicyUpload = (stream, data) =>{
   
     // Setting up S3 upload parameters
     const params = {
-        Bucket: S3_BUCKET_NAME,
+        Bucket: process.env.S3_BUCKET_NAME,
         Key: filename, // File name you want to save as in S3
         Body: pass
     };
@@ -746,7 +746,7 @@ const onlinePolicyStream = (log)=> {
     {
       const stream = fs.createWriteStream(audioPath)
     
-    s3.getObject({Bucket: S3_BUCKET_NAME, Key: audioPath})
+    s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
     .createReadStream()
     .pipe(stream);
     
