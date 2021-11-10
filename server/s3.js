@@ -5,5 +5,6 @@ const s3 = new AWS.S3({
     secretAccessKey: AWS_SECRET_ACCESS_KEY
 });
 
+s3.config.region = "eu-west-3"
 
 module.exports = s3
