@@ -639,9 +639,10 @@ const onlinePolicyUpload = (stream, data) =>{
       .on('error', ()=> reject())
   
     })
+  }
   /* }
  */
-  
+
   const  uploadFromStream = (s3) => {
     const pass = new stream.PassThrough();
   
@@ -676,10 +677,6 @@ const onlinePolicyUpload = (stream, data) =>{
 })
 
 }
-
-
-}
-
 
 io.of('/audio').on('connection', function(socket) {
 
