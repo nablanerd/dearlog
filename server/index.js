@@ -784,9 +784,9 @@ console.log("s3.getObject", e);
       };
       res.writeHead(206, head);
 
-      s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
+    /*   s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
       .createReadStream()
-      .pipe(res)
+      .pipe(res) */
 
       //file.pipe(res);
   } else {
@@ -796,9 +796,9 @@ console.log("s3.getObject", e);
       };
       res.writeHead(200, head);
       
-      s3.getObject({Bucket: "dearlogbucket", Key: "2021_11_9_9_58_43_69.webm"})
+   /*    s3.getObject({Bucket: "dearlogbucket", Key: "2021_11_9_9_58_43_69.webm"})
       .createReadStream()
-      .pipe(res)
+      .pipe(res) */
 
 
       //fs.createReadStream(audioPath).pipe(res);
