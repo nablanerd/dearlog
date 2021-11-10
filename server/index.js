@@ -629,8 +629,8 @@ const onlinePolicyUpload = (stream, data) =>{
   }
 
 
-  if (!fs.existsSync(filename))
-  {
+ /*  if (!fs.existsSync(filename))
+  { */
     const save_file_temporary = () => {
     return new Promise((resolve, reject) => {
   
@@ -639,8 +639,8 @@ const onlinePolicyUpload = (stream, data) =>{
       .on('error', ()=> reject())
   
     })
-  }
-
+  /* }
+ */
   
   const  uploadFromStream = (s3) => {
     const pass = new stream.PassThrough();
@@ -663,7 +663,7 @@ const onlinePolicyUpload = (stream, data) =>{
     return pass;
   }
 
-save_to_file()
+  save_file_temporary()
 .then(() => {
 
     updateContent()
