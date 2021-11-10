@@ -5,7 +5,9 @@ const path = require('path')
 const Joi = require('joi')
 const cors = require('cors');
 
-const stream = require('stream');
+//const stream = require('stream');
+const { PassThrough } = require('stream');
+
 const s3 = require("./s3")
 
 //const cll = require ("./cll");
@@ -644,13 +646,15 @@ const onlinePolicyUpload = (stream, data) =>{
  */
 
   const  uploadFromStream = (s3) => {
-    const pass = new stream.PassThrough();
+   // const pass = new stream.PassThrough();
   
+    const passThrough = new PassThrough();
+
     // Setting up S3 upload parameters
     const params = {
         Bucket: process.env.S3_BUCKET_NAME,
         Key: filename, // File name you want to save as in S3
-        Body: pass
+        Body: passThrough
     };
 
     s3.upload(params, function(err, data) {
