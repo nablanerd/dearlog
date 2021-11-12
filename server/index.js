@@ -838,7 +838,9 @@ checkout_object()
 app.get('/audio/:id', (req, res) => {
 
   //const audioPath = "./2021_11_10_16_16_17_595.webm";
-  
+  const id = parseInt(req.params.id)
+
+
   const dateObject = convertDate2Objet(log.createdAt)
 
   const name = `${dateObject.year}_${dateObject.month}_${dateObject.day}_${dateObject.hour}_${dateObject.minute}_${dateObject.second}_${dateObject.millisecond}`
@@ -918,8 +920,9 @@ app.get('/audio/:id', (req, res) => {
   }
 
 
- 
-  checkout_object()
+  db.Log.findByPk(id)
+.then(checkout_object)
+  //checkout_object()
 .then(()=> {
 
   console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
