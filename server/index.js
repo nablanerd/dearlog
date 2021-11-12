@@ -910,26 +910,26 @@ app.get('/audio/:id', (req, res) => {
   
   }
 
+  checkout_object()
+  .then(()=> {
 
+    console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
+  
+    streaming()
+    /* res
+    .status(200)
+    .send('audio ok')
+    .end(); */
+  
+   // streaming()
+  
+  })
 
 
 })
   //const audioPath = "./2021_11_10_16_16_17_595.webm";
-.then(checkout_object)
   //checkout_object()
-.then(()=> {
 
-  console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
-
-  streaming()
-  /* res
-  .status(200)
-  .send('audio ok')
-  .end(); */
-
- // streaming()
-
-})
 
 
 
