@@ -859,7 +859,7 @@ app.get('/audio/:id', (req, res) => {
       {
         const stream = fs.createWriteStream(audioKey)
   
-        s3.getObject({Bucket: "dearlogbucket", Key: audioKey})
+        s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioKey})
         .createReadStream()
         .pipe(stream)
         .on('close', () => resolve())
@@ -916,12 +916,6 @@ app.get('/audio/:id', (req, res) => {
     console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
   
     streaming()
-    /* res
-    .status(200)
-    .send('audio ok')
-    .end(); */
-  
-   // streaming()
   
   })
 
