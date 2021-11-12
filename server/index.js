@@ -837,9 +837,10 @@ checkout_object()
 
 app.get('/audio/:id', (req, res) => {
 
-  //const audioPath = "./2021_11_10_16_16_17_595.webm";
   const id = parseInt(req.params.id)
 
+  db.Log.findByPk(id)
+.then(()=>{
 
   const dateObject = convertDate2Objet(log.createdAt)
 
@@ -896,12 +897,6 @@ app.get('/audio/:id', (req, res) => {
         };
         res.writeHead(206, head);
   
-      /*   s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
-        .createReadStream()
-        .pipe(res) */
-  
-        //src.pipe(res)
-  
         file.pipe(res);
     } else {
         const head = {
@@ -909,18 +904,17 @@ app.get('/audio/:id', (req, res) => {
             'Content-Type': 'audio/webm',
         };
         res.writeHead(200, head);
-        
-     /*    s3.getObject({Bucket: "dearlogbucket", Key: "2021_11_9_9_58_43_69.webm"})
-        .createReadStream()
-        .pipe(res) */
-  
+      
         fs.createReadStream(audioKey).pipe(res);
     }
   
   }
 
 
-  db.Log.findByPk(id)
+
+
+})
+  //const audioPath = "./2021_11_10_16_16_17_595.webm";
 .then(checkout_object)
   //checkout_object()
 .then(()=> {
