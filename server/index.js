@@ -599,8 +599,6 @@ save_to_file()
 
 }
 
-
-
 }
 
 const onlinePolicyUpload = (stream, data) =>{
@@ -735,7 +733,7 @@ const offlinePolicyStream = (log)=> {
 }
 
 
-const onlinePolicyStream = (log)=> {
+const _onlinePolicyStream = (log, res)=> {
 
   const dateObject = convertDate2Objet(log.createdAt)
 
@@ -823,8 +821,7 @@ console.log("s3.getObject", e);
 }
 
 checkout_object()
-.then(()=> {
-
+.then((res)=> {
 
   console.log( fs.existsSync(audioPath), fs.existsSync(audioPath));
 
@@ -839,6 +836,110 @@ checkout_object()
 }
 
 app.get('/audio/:id', (req, res) => {
+
+  //const audioPath = "./2021_11_10_16_16_17_595.webm";
+  
+  const dateObject = convertDate2Objet(log.createdAt)
+
+  const name = `${dateObject.year}_${dateObject.month}_${dateObject.day}_${dateObject.hour}_${dateObject.minute}_${dateObject.second}_${dateObject.millisecond}`
+  const ext ="webm"
+  
+  const audioKey = name+ '.' + ext;
+
+  //const audioKey = "2021_11_10_16_16_17_595.webm"
+
+  const checkout_object = () => {
+    return new Promise((resolve, reject) => {
+
+      
+      if(!fs.existsSync(audioKey))
+      {
+        const stream = fs.createWriteStream(audioKey)
+  
+        s3.getObject({Bucket: "dearlogbucket", Key: audioKey})
+        .createReadStream()
+        .pipe(stream)
+        .on('close', () => resolve())
+        .on('error', ()=> reject())
+
+        
+      }
+
+      resolve()
+
+
+    })
+  }
+
+  const streaming = ()=> {
+    const audioStat = fs.statSync(audioKey);
+    const fileSize = audioStat.size;
+    const audioRange = req.headers.range;
+  
+    if (audioRange) {
+        const parts = audioRange.replace(/bytes=/, "").split("-");
+        const start = parseInt(parts[0], 10);
+        const end = parts[1]
+            ? parseInt(parts[1], 10)
+            : fileSize-1;
+        const chunksize = (end-start) + 1;
+        
+        const file = fs.createReadStream(audioKey, {start, end});
+    
+        const head = {
+            'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunksize,
+            'Content-Type': 'audio/webm',
+        };
+        res.writeHead(206, head);
+  
+      /*   s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioPath})
+        .createReadStream()
+        .pipe(res) */
+  
+        //src.pipe(res)
+  
+        file.pipe(res);
+    } else {
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'audio/webm',
+        };
+        res.writeHead(200, head);
+        
+     /*    s3.getObject({Bucket: "dearlogbucket", Key: "2021_11_9_9_58_43_69.webm"})
+        .createReadStream()
+        .pipe(res) */
+  
+        fs.createReadStream(audioKey).pipe(res);
+    }
+  
+  }
+
+
+ 
+  checkout_object()
+.then(()=> {
+
+  console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
+
+  streaming()
+  /* res
+  .status(200)
+  .send('audio ok')
+  .end(); */
+
+ // streaming()
+
+})
+
+
+
+})
+
+
+/* app.get('/audio/:id', (req, res) => {
   
   const id = parseInt(req.params.id)
 
@@ -849,11 +950,9 @@ app.get('/audio/:id', (req, res) => {
       console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
 })
-
-
  
 })
-
+ */
 const PORT = process.env.PORT || 8080;
 //7827
 //const PORT = 7827
