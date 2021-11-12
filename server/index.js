@@ -840,7 +840,7 @@ app.get('/audio/:id', (req, res) => {
   const id = parseInt(req.params.id)
 
   db.Log.findByPk(id)
-.then(()=>{
+.then((log)=>{
 
   const dateObject = convertDate2Objet(log.createdAt)
 
