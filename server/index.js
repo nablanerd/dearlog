@@ -251,7 +251,183 @@ app.post('/api/logs', (req, res) => {
       })
   });
   
+
+/*
+NAMESPACE
+*/
+
+app.get('/api/namespaces', (req, res) => {
+
+  return db.Namespace.findAll({include: ['logs']})
+  .then((namespaces) => res.send(namespaces))
+  .catch((err) => {
+    console.log('There was an error querying namespaces', JSON.stringify(err))
+    return res.send(err)
+  });
+
+})
+
+app.get('/api/namespaces/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+
+return db.Namespace.findByPk(id, {include: ['logs']})
+.then((namespace) => {
+
+ res.send(namespace)
+ 
+})
+.catch((err) => {
+      console.log('There was an error querying namespace by id', JSON.stringify(err))
+      return res.send(err) 
+});
+});
+
+app.post('/api/namespaces', (req, res) => {
+
+  const { name, description } = req.body
+
+   return db.Namespace.create( { name, description })
+    .then((namespace) => res.send(namespace))
+    .catch((err) => {
+      console.log('***There was an error creating a namespace', JSON.stringify(namespace))
+      return res.status(400).send(err)
+    }) 
+
+  });
+
+
+  app.put('/api/namespaces/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const { name, description }  = req.body
+
+        return db.Namespace.findByPk(id)
+        .then((namespace) => {
+
+          return namespace.update({ name, description  } )
+            .then(() => res.send(namespace))
+            .catch((err) => {
+              console.log('There was an error querying namespace by id', JSON.stringify(err))
+              res.status(400).send(err)
+            })
+        })
+
+  });
+
+  app.delete('/api/namespaces/:id', (req, res) => {
+
+    const id = parseInt(req.params.id)
   
+    return db.Namespace.findByPk(id)
+      .then((namespace) => {
+        if(namespace ===  null) return res.status(400).send("ID unknow "+id)
+        
+        namespace.setLogs(null)
+
+        namespace.destroy({ force: true })
+    })
+      .then(() => res.status(200).json({"id":id} ))
+      .catch((err) => {
+        console.log('There was an error deleting namespace', JSON.stringify(err))
+        res.status(400).send(err)
+      })
+  });
+
+  
+/*
+TAGS
+*/
+app.get('/api/tags', (req, res) => {
+
+  return db.Tag.findAll({include: ['logs']})
+  .then((tags) => res.send(tags))
+  .catch((err) => {
+    console.log('There was an error querying tags', JSON.stringify(err))
+    return res.send(err)
+  });
+
+})
+
+app.get('/api/tags/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+
+return db.Tag.findByPk(id, {include: ['logs']})
+.then((tag) => {
+
+ res.send(tag)
+ 
+})
+.catch((err) => {
+      console.log('There was an error querying tag by id', JSON.stringify(err))
+      return res.send(err) 
+});
+});
+
+app.post('/api/tags', (req, res) => {
+  const { name, description }  = req.body
+
+  return db.Tag.create( {name, description })
+    .then((tag) => res.send(tag))
+    .catch((err) => {
+      console.log('***There was an error creating a tag', JSON.stringify(log))
+      return res.status(400).send(err)
+    })
+});
+
+app.put('/api/tags/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+
+  const { name, description }  = req.body
+
+      return db.Tag.findByPk(id)
+      .then((tag) => {
+        return tag.update({ name, description  } )
+          .then(() => res.send(tag))
+          .catch((err) => {
+            console.log('There was an error querying tag by id', JSON.stringify(err))
+            res.status(400).send(err)
+          })
+      })
+
+  
+});
+
+app.delete('/api/tags/:id', (req, res) => {
+
+  const id = parseInt(req.params.id)
+
+  return db.Tag.findByPk(id)
+    .then((tag) => {
+      if(tag ===  null) return res.status(400).send("ID unknow "+id)
+
+      tag.setLogs(null)
+      tag.destroy({ force: true })
+  })
+    .then(() => res.status(200).json({"id":id} ))
+    .catch((err) => {
+      console.log('There was an error deleting tag', JSON.stringify(err))
+      res.status(400).send(err)
+    })
+});
+
+/*
+STREAM
+*/
+
+io.of('/audio').on('connection', function(socket) {
+
+  ss(socket).on('audiostream', onlinePolicyUpload);
+
+
+});
+
+app.get('/audio/:id', (req, res) => {
+
+})
+
+
+
+
 
 /* 
 BOOT
