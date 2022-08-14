@@ -90,7 +90,7 @@ res.send({
 
 })
 .catch((err) => {
-        console.log('There was an error querying logs next/prev', JSON.stringify(err))
+        console.log('There was an error querying logs', JSON.stringify(err))
         return res.send(err)
       });
 
@@ -101,9 +101,7 @@ res.send({
 LOGS
 */
 app.get('/api/logs', (req, res) => {
-  //, attributes: ['id', 'title', 'description']
-
-    return db.Log.findAll( {order: [['title', 'DESC']] , include: ['namespace']})
+    return db.Log.findAll( {include: ['namespace']})
       .then((logs) => res.send(logs))
       .catch((err) => {
         console.log('There was an error querying logs', JSON.stringify(err))
@@ -157,7 +155,7 @@ app.post('/api/logs', (req, res) => {
       
       })
       .catch((err) => {
-        console.log('There was an error creating logs', JSON.stringify(log))
+        console.log('***There was an error creating a contact', JSON.stringify(log))
         return res.status(400).send(err)
       })
   });
@@ -215,7 +213,7 @@ app.post('/api/logs', (req, res) => {
             
             })
             .catch((err) => {
-              console.log('There was an error updating log', JSON.stringify(err))
+              console.log('***Error updating contact', JSON.stringify(err))
               res.status(400).send(err)
             })
         })
@@ -231,14 +229,11 @@ app.post('/api/logs', (req, res) => {
       .then((log) => {
         if(log ===  null) return res.status(400).send("ID unknow "+id)
 
-        log.setTags(null)
-        log.setNamespace(null)
-
         log.destroy({ force: true })
     })
       .then(() => res.status(200).json({"id":id} ))
       .catch((err) => {
-        console.log('There was an error deleting log', JSON.stringify(err))
+        console.log('***Error deleting contact', JSON.stringify(err))
         res.status(400).send(err)
       })
   });
@@ -253,7 +248,7 @@ app.get('/api/namespaces', (req, res) => {
   return db.Namespace.findAll({include: ['logs']})
   .then((namespaces) => res.send(namespaces))
   .catch((err) => {
-    console.log('There was an error querying namespaces', JSON.stringify(err))
+    console.log('There was an error querying logs', JSON.stringify(err))
     return res.send(err)
   });
 
@@ -269,7 +264,7 @@ return db.Namespace.findByPk(id, {include: ['logs']})
  
 })
 .catch((err) => {
-      console.log('There was an error querying namespace by id', JSON.stringify(err))
+      console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
 });
 });
@@ -281,7 +276,7 @@ app.post('/api/namespaces', (req, res) => {
    return db.Namespace.create( { name, description })
     .then((namespace) => res.send(namespace))
     .catch((err) => {
-      console.log('***There was an error creating a namespace', JSON.stringify(namespace))
+      console.log('***There was an error creating a contact', JSON.stringify(namespace))
       return res.status(400).send(err)
     }) 
 
@@ -299,7 +294,7 @@ app.post('/api/namespaces', (req, res) => {
           return namespace.update({ name, description  } )
             .then(() => res.send(namespace))
             .catch((err) => {
-              console.log('There was an error querying namespace by id', JSON.stringify(err))
+              console.log('***Error updating contact', JSON.stringify(err))
               res.status(400).send(err)
             })
         })
@@ -313,14 +308,12 @@ app.post('/api/namespaces', (req, res) => {
     return db.Namespace.findByPk(id)
       .then((namespace) => {
         if(namespace ===  null) return res.status(400).send("ID unknow "+id)
-        
-        namespace.setLogs(null)
-
+  
         namespace.destroy({ force: true })
     })
       .then(() => res.status(200).json({"id":id} ))
       .catch((err) => {
-        console.log('There was an error deleting namespace', JSON.stringify(err))
+        console.log('***Error deleting namespace', JSON.stringify(err))
         res.status(400).send(err)
       })
   });
@@ -334,7 +327,7 @@ app.get('/api/tags', (req, res) => {
   return db.Tag.findAll({include: ['logs']})
   .then((tags) => res.send(tags))
   .catch((err) => {
-    console.log('There was an error querying tags', JSON.stringify(err))
+    console.log('There was an error querying logs', JSON.stringify(err))
     return res.send(err)
   });
 
@@ -350,7 +343,7 @@ return db.Tag.findByPk(id, {include: ['logs']})
  
 })
 .catch((err) => {
-      console.log('There was an error querying tag by id', JSON.stringify(err))
+      console.log('There was an error querying log by id', JSON.stringify(err))
       return res.send(err) 
 });
 });
@@ -361,7 +354,7 @@ app.post('/api/tags', (req, res) => {
   return db.Tag.create( {name, description })
     .then((tag) => res.send(tag))
     .catch((err) => {
-      console.log('***There was an error creating a tag', JSON.stringify(log))
+      console.log('***There was an error creating a contact', JSON.stringify(log))
       return res.status(400).send(err)
     })
 });
@@ -376,7 +369,7 @@ app.put('/api/tags/:id', (req, res) => {
         return tag.update({ name, description  } )
           .then(() => res.send(tag))
           .catch((err) => {
-            console.log('There was an error querying tag by id', JSON.stringify(err))
+            console.log('***Error updating contact', JSON.stringify(err))
             res.status(400).send(err)
           })
       })
@@ -392,12 +385,11 @@ app.delete('/api/tags/:id', (req, res) => {
     .then((tag) => {
       if(tag ===  null) return res.status(400).send("ID unknow "+id)
 
-      tag.setLogs(null)
       tag.destroy({ force: true })
   })
     .then(() => res.status(200).json({"id":id} ))
     .catch((err) => {
-      console.log('There was an error deleting tag', JSON.stringify(err))
+      console.log('***Error deleting contact', JSON.stringify(err))
       res.status(400).send(err)
     })
 });
@@ -977,7 +969,3 @@ const main = () => {
 
 
 
-
-
-
-console.log("process.env", process.env);

@@ -11,10 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //models.Tag.belongsToMany(models.Log, { through: LogTags, as: 'tags' });
-     // models.Log.belongsToMany(models.Tag, { through: LogTags , as: 'logs'});
+
+      models.Log.belongsToMany(models.Tag, {   through: models.LogTags , as: 'tags'});
+          models.Tag.belongsToMany(models.Log, {  through: models.LogTags, as: 'logs' });
+
+     
     }
   };
+
+
+
   LogTags.init({
     LogId: DataTypes.INTEGER,
     TagId: DataTypes.INTEGER
@@ -22,5 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'LogTags',
   });
+
+  
   return LogTags;
 };

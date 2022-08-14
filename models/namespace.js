@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Namespace.hasMany(models.Log, { foreignKey: 'id_namespace' ,as: 'logs'});
+
     }
   };
   Namespace.init({
