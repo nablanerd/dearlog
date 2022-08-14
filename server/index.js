@@ -51,3 +51,12 @@ app.get('/heroku', (req, res) => {
   .end();
 
 })
+
+
+const PORT = process.env.PORT || 8080;
+//7827
+//const PORT = 7827
+
+server.listen(PORT, () => {
+  console.log(`Server is up on port ${PORT}`);
+});
