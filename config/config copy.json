@@ -1,0 +1,38 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "./db/database-dev.sqlite3",
+    "dateStrings": true
+  },
+ 
+  "postgre_dev": {
+    "host":"localhost",
+    "port":5432,
+    "dialect": "postgres",
+    "database":"dearlog",
+    "username":"postgres",
+    "password":"45zqD7N",
+    "logging": false
+
+
+  },
+
+  "test": {
+    "dialect": "sqlite",
+    "storage": ":memory"
+  },
+  "production": {
+    "dialect": "postgres",
+    "use_env_variable": "DATABASE_URL",
+    "operatorsAliases": false,
+
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+
+  }
+}
+
+}
