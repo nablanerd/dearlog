@@ -259,7 +259,35 @@ NAMESPACE
 app.get('/api/namespaces', (req, res) => {
 
   return db.Namespace.findAll({include: ['logs']})
-  .then((namespaces) => res.send(namespaces))
+  .then((namespaces) => {
+    
+const namespacesComputed =  namespaces.map(n => 
+  {
+    if(n.logs)
+    {
+
+      //"NX"
+     return n.logs.map(log=>{
+
+
+      log["dataValues"] ["namespace"] = n.name
+      return log
+      console.log("log", log);
+      })
+
+
+    }
+
+  }
+          
+  )
+
+
+  //console.log("namespaces", namespacesComputed);
+    res.send(namespacesComputed)
+   
+    
+  })
   .catch((err) => {
     console.log('There was an error querying namespaces', JSON.stringify(err))
     return res.send(err)
@@ -337,10 +365,25 @@ app.post('/api/namespaces', (req, res) => {
 /*
 TAGS
 */
-app.get('/api/tags', (req, res) => {
+app.get('/api/tags',  async(req, res) => {
 
-  return db.Tag.findAll({include: ['logs']})
-  .then((tags) => res.send(tags))
+  return db.Tag.findAll({include: { model: db.Log, as: 'logs', all: true, nested: true }
+})
+
+
+
+  .then(   (tags) => {
+
+
+    
+
+    res.send(tags)
+
+  }
+  
+  
+  
+  )
   .catch((err) => {
     console.log('There was an error querying tags', JSON.stringify(err))
     return res.send(err)
@@ -423,6 +466,7 @@ io.of('/audio').on('connection', function(socket) {
 
 app.get('/audio/:id', (req, res) => {
 
+  
 })
 
 
