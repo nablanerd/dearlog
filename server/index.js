@@ -258,33 +258,13 @@ NAMESPACE
 
 app.get('/api/namespaces', (req, res) => {
 
-  return db.Namespace.findAll({include: ['logs']})
+//  return db.Namespace.findAll({include: ['logs']})
+  return db.Namespace.findAll({include: { model: db.Log, as: 'logs', all: true, nested: true }
+})
+
   .then((namespaces) => {
-    
-const namespacesComputed =  namespaces.map(n => 
-  {
-    if(n.logs)
-    {
 
-      //"NX"
-     return n.logs.map(log=>{
-
-
-      log["dataValues"] ["namespace"] = n.name
-      return log
-      console.log("log", log);
-      })
-
-
-    }
-
-  }
-          
-  )
-
-
-  //console.log("namespaces", namespacesComputed);
-    res.send(namespacesComputed)
+    res.send(namespaces)
    
     
   })
