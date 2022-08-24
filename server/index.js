@@ -461,7 +461,7 @@ app.delete('/api/tags/:id', (req, res) => {
 /*
 STREAM
 */
-
+/* 
 io.of('/audio').on('connection', function(socket) {
 
   console.log("######connection");
@@ -479,7 +479,7 @@ app.get('/audio/:id', (req, res) => {
   audioStuff.broadcast(db, id)
 
 })
-
+ */
 
 
 
