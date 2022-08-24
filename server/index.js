@@ -8,9 +8,11 @@ const cors = require('cors');
 //const stream = require('stream');
 const { PassThrough } = require('stream');
 
-const s3 = require("./s3")
+//const s3 = require("./s3")
 
 //const cll = require ("./cll");
+
+const audioStuff = require('./audioStuff.js');
 
 const mkdirp = require('mkdirp')
 
@@ -258,11 +260,32 @@ NAMESPACE
 
 app.get('/api/namespaces', (req, res) => {
 
-//  return db.Namespace.findAll({include: ['logs']})
-  return db.Namespace.findAll({include: { model: db.Log, as: 'logs', all: true, nested: true }
-})
+  return db.Namespace.findAll({include: ['logs']})
+  
+ // return db.Namespace.findAll({include: { model: db.Log, as: 'logs', all: true, nested: true })
 
   .then((namespaces) => {
+
+
+    const namespacesComputed =  namespaces.map(n => 
+      {
+        if(n.logs)
+        {
+    
+          //"NX"
+         return n.logs.map(log=>{
+    
+          log["dataValues"] ["namespace"] = n.name
+          return log
+          console.log("log", log);
+          })
+    
+    
+        }
+        else return n
+    
+      }
+    )
 
     res.send(namespaces)
    
@@ -346,6 +369,8 @@ app.post('/api/namespaces', (req, res) => {
 TAGS
 */
 app.get('/api/tags',  async(req, res) => {
+
+            //"NX"
 
   return db.Tag.findAll({include: { model: db.Log, as: 'logs', all: true, nested: true }
 })
@@ -439,14 +464,20 @@ STREAM
 
 io.of('/audio').on('connection', function(socket) {
 
-  ss(socket).on('audiostream', onlinePolicyUpload);
+  console.log("######connection");
+  ss(socket).on('audiostream', audioStuff.onlinePolicyUpload(db));
 
 
 });
 
 app.get('/audio/:id', (req, res) => {
 
-  
+  console.log("######/audio/:id");
+
+  const id = parseInt(req.params.id)
+
+  audioStuff.broadcast(db, id)
+
 })
 
 
