@@ -6,6 +6,8 @@ const {     S3Client,
 
 require('dotenv').config()
 
+const { PassThrough } = require('stream');
+
 const client = new S3Client({
     region: 'eu-west-3',
     credentials: {
@@ -69,14 +71,14 @@ function resetAllS3()
 }
 
 /* public */
-async function saveToS3(key, file_content)
+async function saveToS3(key, readStream)
 {
-    const passThrough = new PassThrough();
+    //const passThrough = new PassThrough();
 
     const putObjectCommand = new PutObjectCommand({
         Bucket: process.env.S3_BUCKET_NAME,
         Key: key,
-        Body: passThrough
+        Body: readStream
     });
 
     await client.send(putObjectCommand);

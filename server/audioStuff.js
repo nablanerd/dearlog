@@ -1,5 +1,6 @@
 const s3 = require('./s3_v3.js');
 const convertDate2Objet = require('../my_modules/date')
+const fs = require('fs');
 
 /* 
 UPLOAD
@@ -23,9 +24,10 @@ function _generateKeyFromDate(log)
 
 function _updateContent (db,data) {
 
+
     const audioDataContent = JSON.stringify({
       isRecorded : true,
-      duration : data.duration
+     /* #@ */ duration : data.duration
 
     })
     db.Log.update(
@@ -37,7 +39,7 @@ function _updateContent (db,data) {
   }
 
 
-function _save_file_temporary (key)  {
+function _save_file_temporary (stream, key)  {
     return new Promise((resolve, reject) => {
   
       stream.pipe(fs.createWriteStream(key))
@@ -48,32 +50,69 @@ function _save_file_temporary (key)  {
   }
 
 
-  function onlinePolicyUpload  (stream, log, db)
-  {
+function onlinePolicyUpload  (db)
+{
 
-    const key = _generateKeyFromDate(log)
+    function p (stream, data)  {
 
-    _save_file_temporary(key)
-    .then((db, log)=>{
+        const key = _generateKeyFromDate(data)
 
-        _updateContent (db,log)
+        _save_file_temporary(stream, key)
+        .then(()=>{
+    
+            console.log("onlinePolicyUpload then", data);
 
-        readStream = fs.createReadStream(key);
+           _updateContent (db,data)
+    
+            readStream = fs.createReadStream(key)
+    /* 
+            readStream
+        .pipe(s3.saveToS3(key, readStream));
+     */
+    
+        s3.saveToS3(key, readStream)
 
-        readStream
-    .pipe(s3.saveToS3);
+        })
 
+
+    }
+
+  return p
+
+}
+
+
+function offLinePolicyUpload  (db)
+{
+
+
+  function p (stream, data)  {
+
+    const key = _generateKeyFromDate(data)
+
+    _save_file_temporary(stream, key)
+    .then(()=>{
+
+        console.log("onffPolicyUpload then", data);
+
+       _updateContent (db,data)
 
     })
 
-  }
 
+}
+
+return p
+
+
+}
 /* 
 DOWNLOAD
 */
 
-  function broadcast(db, id)
+  function broadcast(db, req,res)
   {
+    const id = parseInt(req.params.id)
 
    // const id = parseInt(req.params.id)
 
@@ -87,9 +126,9 @@ DOWNLOAD
     _checkout_object(key)
     .then(()=> {
   
-      console.log( "fs.existsSync(audioPath)", fs.existsSync(audioKey));
+      console.log( "fs.existsSync(audioPath)", fs.existsSync(key));
     
-      _streaming(key)
+      _streaming(key, req,res)
     
     })
   
@@ -134,7 +173,7 @@ function _checkout_object  (key) {
   }
 
 
-function _streaming  (key) {
+function _streaming  (key, req,res) {
     const audioStat = fs.statSync(key);
     const fileSize = audioStat.size;
     const audioRange = req.headers.range;
@@ -176,6 +215,8 @@ function _streaming  (key) {
   module.exports = {
     
     onlinePolicyUpload:onlinePolicyUpload,
+    offLinePolicyUpload:offLinePolicyUpload,
+    
     broadcast:broadcast
     
   };
