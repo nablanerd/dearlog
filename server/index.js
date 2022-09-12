@@ -6,7 +6,7 @@ const Joi = require('joi')
 const cors = require('cors');
 
 //const stream = require('stream');
-const { PassThrough } = require('stream');
+//const { PassThrough } = require('stream');
 
 //const s3 = require("./s3")
 
@@ -20,14 +20,15 @@ const app = express();
 
 var ss = require('socket.io-stream');
 
-const fs = require('fs');
+//const fs = require('fs');
 
-const convertDate2Objet = require('../my_modules/date')
+//const convertDate2Objet = require('../my_modules/date')
 
 const server = require('http').Server(app)
 const io = require('socket.io')(server, {
   cors: {
-    origin: "http://localhost:3000",
+   // origin: "http://localhost:3000",
+   origin: "https://nablanerd.github.io/",
     methods: ["GET", "POST"]
   }
 })
@@ -461,12 +462,22 @@ app.delete('/api/tags/:id', (req, res) => {
 /*
 STREAM
 */
-/* 
+
 io.of('/audio').on('connection', function(socket) {
 
   console.log("######connection");
+
+
+  console.log("/audio", audioStuff.onlinePolicyUpload(db));
+  
   ss(socket).on('audiostream', audioStuff.onlinePolicyUpload(db));
 
+
+ /*  console.log("/audio", audioStuff.offLinePolicyUpload(db));
+  
+  ss(socket).on('audiostream', audioStuff.offLinePolicyUpload(db));
+
+ */
 
 });
 
@@ -474,12 +485,11 @@ app.get('/audio/:id', (req, res) => {
 
   console.log("######/audio/:id");
 
-  const id = parseInt(req.params.id)
 
-  audioStuff.broadcast(db, id)
+  audioStuff.broadcast(db, req,res)
 
 })
- */
+
 
 
 
