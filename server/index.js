@@ -28,7 +28,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server, {
   cors: {
    // origin: "http://localhost:3000",
-   origin: "https://nablanerd.github.io/",
+   origin: "https://nablanerd.github.io/dearlog-webapp",
     methods: ["GET", "POST"]
   }
 })
