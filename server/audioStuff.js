@@ -151,11 +151,14 @@ function _checkout_object  (key) {
         const stream = fs.createWriteStream(key)
   
         s3.getObjectFromS3
+        .Body
         ///.createReadStream()
         .pipe(stream)
         .on('close', () => resolve())
         .on('error', ()=> reject())
 
+
+        
 
 /*         s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioKey})
         .createReadStream()
