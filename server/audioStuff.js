@@ -151,7 +151,7 @@ function _checkout_object  (key) {
         const stream = fs.createWriteStream(key)
   
         s3.getObjectFromS3
-        .createReadStream()
+        //.createReadStream()
         .pipe(stream)
         .on('close', () => resolve())
         .on('error', ()=> reject())
