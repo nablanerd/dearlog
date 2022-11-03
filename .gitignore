@@ -4,3 +4,7 @@ node_modules/
 _project/
 .sqlite3
 .webm
+.archive/
+archive/
+sandbox
+.env
