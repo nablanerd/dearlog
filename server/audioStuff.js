@@ -159,6 +159,16 @@ function _checkout_object  (key) {
 
 
         
+        /* 
+        
+        //https://stackoverflow.com/questions/68630542/s3-getobject-createreadstream-is-not-a-function
+        
+        const response = await s3.getObject({
+          Bucket: BUCKET_NAME,
+          Key: key,
+      });
+      
+      response.Body.pipe(res); */
 
 /*         s3.getObject({Bucket: process.env.S3_BUCKET_NAME, Key: audioKey})
         .createReadStream()
