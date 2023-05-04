@@ -275,7 +275,9 @@ module.exports = {
     saveToS3:saveToS3,
     //getObjectFromS3:getObjectFromS3,
 
-    _hyperStreaming:_hyperStreaming
+    _hyperStreaming:_hyperStreaming,
+
+    downloadInChunks :  downloadInChunks
 
 
 }
