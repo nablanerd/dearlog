@@ -126,17 +126,17 @@ DOWNLOAD
     //const audioKey = "2021_11_10_16_16_17_595.webm"
   
 
-   s3._hyperStreaming(key, req,res)
+  // s3._hyperStreaming(key, req,res)
 
 
-  /*   _checkout_object(key)
+    _checkout_object(key)
     .then(()=> {
   
       console.log( "fs.existsSync(audioPath)", fs.existsSync(key));
     
       _streaming(key, req,res)
     
-    }) */
+    })
   
   
   })
