@@ -21,8 +21,8 @@ const client = new S3Client({
  
 (async () => {
    
-   resetAllS3()
-console.log("resetAllS3");
+//resetAllS3()
+//console.log("resetAllS3");
 
 })() /**/
 
