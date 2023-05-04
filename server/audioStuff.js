@@ -2,6 +2,7 @@ const s3 = require('./s3_v3.js');
 const convertDate2Objet = require('../my_modules/date')
 const fs = require('fs');
 
+
 /* 
 UPLOAD
 */
@@ -142,13 +143,16 @@ DOWNLOAD
   }
   
 
-function _checkout_object  (key) {
-    return new Promise((resolve, reject) => {
+function  _checkout_object  (key) {
+    return new Promise(async (resolve, reject) => {
 
       
       if(!fs.existsSync(key))
       {
-        const stream = fs.createWriteStream(key)
+       // const stream = fs.createWriteStream(key)
+
+
+       await s3.downloadInChunks(key)
   
        /*  s3.getObjectFromS3
         .Body
