@@ -111,7 +111,7 @@ const getObjectRange = ({  key, start, end }) => {
     Range: `bytes=${start}-${end}`,
   });
 
-  return S3Client.send(command);
+  return client.send(command);
 };
 
 const getRangeAndLength = (contentRange) => {
@@ -132,14 +132,20 @@ const isComplete = ({ end, length }) => end === length - 1;
 const downloadInChunks = async ({ key }) => {
 
 
-console.log("downloadInChunks", "key", key);
+   // const fs = require("fs/promises");
+const path = require("path");
 
-    const file = "file:///"+ key
+const filePath = path.join(__dirname, key);
 
-    console.log("file", file);
-    
+
+console.log("downloadInChunks key",  key);
+
+   // const file = "file:///"+ key
+
+    console.log("filePath", filePath);
+
   const writeStream = fs.createWriteStream(
-    file
+    filePath
     //url.fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
   
   
@@ -179,6 +185,7 @@ module.exports = {
     resetAllS3:resetAllS3,
     saveToS3:saveToS3,
     getObjectFromS3:getObjectFromS3,
+
     downloadInChunks:downloadInChunks
 
 
