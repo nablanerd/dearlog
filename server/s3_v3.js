@@ -218,7 +218,10 @@ res.writeHead(200, head);
  //2023-05-04T17:22:47.709939+00:00 app[web.1]: Body.transformToWebStream ReadableStream { locked: false, state: 'readable', supportsBYOB: false }
 
 const es = require('event-stream')
-, reader = es.readArray(await Body.transformToByteArray())
+
+const arrayFlux =await Body.transformToByteArray()
+
+const reader = es.readArray(arrayFlux)
 
 reader.pipe(res)
 
