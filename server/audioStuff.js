@@ -202,13 +202,6 @@ function  _checkout_object  (key) {
   {
 
 
-    const head = {
-      'Content-Length': fileSize,
-      'Content-Type': 'audio/webm',
-  };
-  res.writeHead(200, head);
-
-
 console.log("212 key", key);
 
 const filePath = path.join(__dirname, key);
@@ -222,10 +215,19 @@ console.log("filePath", filePath);
   let rangeAndLength = { start: -1, end: -1, length: -1 };
 
   while (!isComplete(rangeAndLength)) {
+
+    
     const { end } = rangeAndLength;
     const nextRange = { start: end + 1, end: end + oneMB };
 
     console.log(`Downloading bytes ${nextRange.start} to ${nextRange.end}`);
+
+    const head = {
+      'Content-Length': nextRange.end,
+      'Content-Type': 'audio/webm',
+  };
+  res.writeHead(200, head);
+
 
     const { ContentRange, Body } = await getObjectRange({
       key,
