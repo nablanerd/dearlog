@@ -161,7 +161,11 @@ console.log("filePath", filePath);
       ...nextRange,
     });
 
+
     writeStream.write(await Body.transformToByteArray());
+    
+    writeStream.pipe(res)
+    
     rangeAndLength = getRangeAndLength(ContentRange);
   }
 };
