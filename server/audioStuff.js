@@ -153,7 +153,7 @@ function  _checkout_object  (key) {
 
 
        console.log("key", key);
-       
+
        await s3.downloadInChunks(key)
   
        /*  s3.getObjectFromS3
@@ -183,6 +183,8 @@ function  _checkout_object  (key) {
         .on('error', ()=> reject()) */
 
         
+        resolve()
+
       }
 
       resolve()
