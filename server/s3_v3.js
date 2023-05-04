@@ -164,7 +164,6 @@ console.log("filePath", filePath);
 
     writeStream.write(await Body.transformToByteArray());
     
-    writeStream.pipe(res)
     
     rangeAndLength = getRangeAndLength(ContentRange);
   }
@@ -212,7 +211,9 @@ res.writeHead(200, head);
     ...nextRange,
   });
 
-  writeStream.write(await Body.transformToByteArray()).pipe(res);
+  writeStream.write(await Body.transformToByteArray());
+
+  writeStream.pipe(res)
 
   rangeAndLength = getRangeAndLength(ContentRange);
 }
