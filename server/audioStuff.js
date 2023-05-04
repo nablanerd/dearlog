@@ -195,7 +195,9 @@ function  _checkout_object  (key) {
 
 
 function _streaming  (key, req,res) {
-    const audioStat = fs.statSync(key);
+  const keyFile = "/app/server/"+key
+
+    const audioStat = fs.statSync(keyFile);
     const fileSize = audioStat.size;
     const audioRange = req.headers.range;
   
@@ -207,7 +209,7 @@ function _streaming  (key, req,res) {
             : fileSize-1;
         const chunksize = (end-start) + 1;
         
-        const file = fs.createReadStream("/app/server/"+key, {start, end});
+        const file = fs.createReadStream(keyFile, {start, end});
     
         const head = {
             'Content-Range': `bytes ${start}-${end}/${fileSize}`,
