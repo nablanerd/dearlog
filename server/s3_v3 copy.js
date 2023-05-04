@@ -196,7 +196,6 @@ let rangeAndLength = { start: -1, end: -1, length: -1 };
 while (!isComplete(rangeAndLength)) {
 
   
-  
   const { end } = rangeAndLength;
   const nextRange = { start: end + 1, end: end + oneMB };
 
@@ -224,8 +223,8 @@ let Duplex = require('stream').Duplex;
 
 function bufferToStream(buffer) {
   let stream = new Duplex();
-  stream.push(buffer, 'utf8');
-  stream.push(null, 'utf8');
+  stream.push(buffer);
+  stream.push(null);
   return stream;
 }
 
