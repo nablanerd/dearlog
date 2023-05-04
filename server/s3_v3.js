@@ -211,9 +211,9 @@ res.writeHead(200, head);
     ...nextRange,
   });
 
-  writeStream.write(await Body.transformToByteArray());
+ // writeStream.write(await Body.transformToWebStream());
 
-  writeStream.pipe(res)
+  await Body.transformToWebStream().pipe(res)
 
   rangeAndLength = getRangeAndLength(ContentRange);
 }
