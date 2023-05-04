@@ -213,7 +213,7 @@ res.writeHead(200, head);
 
  // writeStream.write(await Body.transformToWebStream());
 
- const flux =  await Body.transformToWebStream()
+ const flux = Body.transformToWebStream()
 
  flux.pipe(res)
 
