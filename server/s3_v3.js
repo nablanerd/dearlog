@@ -2,7 +2,8 @@ const {     S3Client,
     CreateBucketCommand,
     PutObjectCommand,
     ListObjectsCommand,
-    DeleteObjectCommand } = require("@aws-sdk/client-s3");
+    DeleteObjectCommand ,
+    GetObjectCommand} = require("@aws-sdk/client-s3");
 
     const fs = require('fs');
 
@@ -129,9 +130,14 @@ const isComplete = ({ end, length }) => end === length - 1;
 // smaller pieces. Amazon S3 accepts a Range header to specify the start
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ key }) => {
-    const file = `file:///${key}`
+
+
+console.log("downloadInChunks", "key", key);
+
+    const file = "file:///"+ key
 
     console.log("file", file);
+    
   const writeStream = fs.createWriteStream(
     file
     //url.fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
