@@ -227,7 +227,7 @@ function _streaming  (key, req,res) {
         };
         res.writeHead(200, head);
       
-        fs.createReadStream(file).pipe(res);
+        fs.createReadStream(keyFile).pipe(res);
     }
   
   }
