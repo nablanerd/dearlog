@@ -132,7 +132,7 @@ const isComplete = ({ end, length }) => end === length - 1;
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ key }) => {
 
-    console.log("key", key);
+    console.log("135 key", key);
 
 
 const filePath = path.join(__dirname, key);
