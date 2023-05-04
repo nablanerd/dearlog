@@ -213,7 +213,7 @@ res.writeHead(200, head);
 
  // writeStream.write(await Body.transformToWebStream());
 
-  await Body.transformToWebStream().pipe(res)
+  await Body.transformToWebStream.pipe(res)
 
   rangeAndLength = getRangeAndLength(ContentRange);
 }
