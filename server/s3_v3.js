@@ -135,7 +135,7 @@ const downloadInChunks = async (key ) => {
     console.log("135 key", key);
 
 
-const filePath = path.join("/", key);
+const filePath = path.join(__dirname, key);
 
 console.log("filePath", filePath);
 
