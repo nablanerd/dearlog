@@ -129,9 +129,17 @@ const isComplete = ({ end, length }) => end === length - 1;
 // smaller pieces. Amazon S3 accepts a Range header to specify the start
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ key }) => {
+    const file = `file:///${key}`
+
+    console.log("file", file);
   const writeStream = fs.createWriteStream(
-    url.fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
-  ).on("error", (err) => console.error(err));
+    file
+    //url.fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
+  
+  
+  
+  
+    ).on("error", (err) => console.error(err));
 
   let rangeAndLength = { start: -1, end: -1, length: -1 };
 
