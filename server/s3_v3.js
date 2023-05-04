@@ -188,8 +188,6 @@ function bufferToStream(buffer) {
 async function  _hyperStreaming(key, req,res)
 {
 
-
-
 console.log("212 key", key);
 
 const filePath = path.join(__dirname, key);
@@ -240,14 +238,12 @@ while (!isComplete(rangeAndLength)) {
 
     bufferToStream(await Body.transformToByteArray()).pipe(res)
 
-
-  
     rangeAndLength = getRangeAndLength(ContentRange);
 
 
 } else {
     const head = {
-        'Content-Length': fileSize,
+        'Content-Length': fileSize-1,
         'Content-Type': 'audio/webm',
     };
     res.writeHead(200, head);
