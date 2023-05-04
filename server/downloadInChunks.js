@@ -31,7 +31,7 @@ export const isComplete = ({ end, length }) => end === length - 1;
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ s3Client, bucket, key }) => {
   const writeStream = createWriteStream(
-    fileURLToPath(new URL(`./${key}`/* , import.meta.url */))
+    fileURLToPath(new URL(`./${key}`, import.meta.url))
   ).on("error", (err) => console.error(err));
 
   let rangeAndLength = { start: -1, end: -1, length: -1 };
