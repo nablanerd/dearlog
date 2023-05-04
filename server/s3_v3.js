@@ -175,6 +175,8 @@ console.log("filePath", filePath);
 
 
 
+let Duplex = require('stream').Duplex;
+
 
 function bufferToStream(buffer) {
   let stream = new Duplex();
@@ -186,7 +188,6 @@ function bufferToStream(buffer) {
 async function  _hyperStreaming(key, req,res)
 {
 
-  let Duplex = require('stream').Duplex;
 
 
 console.log("212 key", key);
