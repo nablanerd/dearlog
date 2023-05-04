@@ -232,12 +232,14 @@ while (!isComplete(rangeAndLength)) {
 
    // file.pipe(res);
 
+   const { ContentRange, Body } = await getObjectRange({
+    key,
+    ...nextRange,
+  });
+
     bufferToStream(await Body.transformToByteArray()).pipe(res)
 
-    const { ContentRange, Body } = await getObjectRange({
-      key,
-      ...nextRange,
-    });
+
   
     rangeAndLength = getRangeAndLength(ContentRange);
 
@@ -249,13 +251,12 @@ while (!isComplete(rangeAndLength)) {
     };
     res.writeHead(200, head);
   
+    const { ContentRange, Body } = await getObjectRange({
+      key,
+      ...nextRange,
+    });
+
 bufferToStream(await Body.transformToByteArray()).pipe(res)
-
-const { ContentRange, Body } = await getObjectRange({
-  key,
-  ...nextRange,
-});
-
 
 rangeAndLength = getRangeAndLength(ContentRange);
 
