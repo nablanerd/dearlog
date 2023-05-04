@@ -216,7 +216,11 @@ res.writeHead(200, head);
 
  const flux = Body.transformToWebStream()
 
- console.log("Body.transformToWebStream", Body.transformToWebStream());
+ console.log("Body.transformToWebStream", flux);
+
+ console.log("typeof flux", typeof flux);
+
+
  //console.log("Body.transformToByteArray", Body.transformToByteArray());
 
 
