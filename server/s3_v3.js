@@ -131,18 +131,12 @@ const isComplete = ({ end, length }) => end === length - 1;
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ key }) => {
 
+    console.log("key", key);
 
-   // const fs = require("fs/promises");
-const path = require("path");
 
 const filePath = path.join(__dirname, key);
 
-
-console.log("downloadInChunks key",  key);
-
-   // const file = "file:///"+ key
-
-    console.log("filePath", filePath);
+console.log("filePath", filePath);
 
   const writeStream = fs.createWriteStream(
     filePath
