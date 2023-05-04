@@ -23,6 +23,7 @@ const client = new S3Client({
 
 const url = require('url');
 const path = require("path");
+const { log } = require("console");
 
 (async () => {
    
@@ -215,7 +216,16 @@ res.writeHead(200, head);
 
  const flux = Body.transformToWebStream()
 
- flux.pipe(res)
+ console.log("Body.transformToWebStream", Body.transformToWebStream());
+ console.log("Body.transformToByteArray", Body.transformToByteArray());
+
+
+
+
+
+ 
+ 
+ //flux.pipe(res)
 
 
 
