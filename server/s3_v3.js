@@ -217,13 +217,18 @@ res.writeHead(200, head);
 
  //2023-05-04T17:22:47.709939+00:00 app[web.1]: Body.transformToWebStream ReadableStream { locked: false, state: 'readable', supportsBYOB: false }
 
-const es = require('event-stream')
+//const arrayFlux =await Body.transformToByteArray()
 
-const arrayFlux =await Body.transformToByteArray()
+let Duplex = require('stream').Duplex;
 
-const reader = es.readArray(arrayFlux)
+function bufferToStream(buffer) {
+  let stream = new Duplex();
+  stream.push(buffer);
+  stream.push(null);
+  return stream;
+}
 
-reader.pipe(res)
+bufferToStream(await Body.transformToByteArray()).pipe(res)
 
 
 
