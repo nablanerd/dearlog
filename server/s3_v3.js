@@ -22,7 +22,8 @@ const client = new S3Client({
 
 
 const url = require('url');
- 
+const path = require("path");
+
 (async () => {
    
 //resetAllS3()
