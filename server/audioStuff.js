@@ -152,6 +152,8 @@ function  _checkout_object  (key) {
        // const stream = fs.createWriteStream(key)
 
 
+       console.log("key", key);
+       
        await s3.downloadInChunks(key)
   
        /*  s3.getObjectFromS3
