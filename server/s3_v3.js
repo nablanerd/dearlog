@@ -176,9 +176,17 @@ console.log("filePath", filePath);
 
 
 
+function bufferToStream(buffer) {
+  let stream = new Duplex();
+  stream.push(buffer, 'utf8');
+  stream.push(null, 'utf8');
+  return stream;
+}
 
 async function  _hyperStreaming(key, req,res)
 {
+
+  let Duplex = require('stream').Duplex;
 
 
 console.log("212 key", key);
@@ -193,80 +201,77 @@ console.log("filePath", filePath);
  */
 let rangeAndLength = { start: -1, end: -1, length: -1 };
 
+const audioRange = req.headers.range;
+
 while (!isComplete(rangeAndLength)) {
 
-  
-  
   const { end } = rangeAndLength;
   const nextRange = { start: end + 1, end: end + oneMB };
 
   console.log(`Downloading bytes ${nextRange.start} to ${nextRange.end}`);
 
-  const head = {
-    'Content-Length': nextRange.end,
-    'Content-Type': 'audio/webm',
-};
-res.writeHead(200, head);
+  const fileSize = nextRange.end
 
-  const { ContentRange, Body } = await getObjectRange({
-    key,
-    ...nextRange,
-  });
+  if (audioRange) {
+    const parts = audioRange.replace(/bytes=/, "").split("-");
+    const start = parseInt(parts[0], 10);
+    const end = parts[1]
+        ? parseInt(parts[1], 10)
+        : fileSize-1;
+    const chunksize = (end-start) + 1;
+    
+    //const file = fs.createReadStream(keyFile, {start, end});
 
- // writeStream.write(await Body.transformToWebStream());
+    const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'audio/webm',
+    };
+    res.writeHead(206, head);
+
+   // file.pipe(res);
+
+    bufferToStream(await Body.transformToByteArray()).pipe(res)
+
+    const { ContentRange, Body } = await getObjectRange({
+      key,
+      ...nextRange,
+    });
+  
+    rangeAndLength = getRangeAndLength(ContentRange);
 
 
- //2023-05-04T17:22:47.709939+00:00 app[web.1]: Body.transformToWebStream ReadableStream { locked: false, state: 'readable', supportsBYOB: false }
-
-//const arrayFlux =await Body.transformToByteArray()
-
-let Duplex = require('stream').Duplex;
-
-function bufferToStream(buffer) {
-  let stream = new Duplex();
-  stream.push(buffer, 'utf8');
-  stream.push(null, 'utf8');
-  return stream;
-}
-
+} else {
+    const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'audio/webm',
+    };
+    res.writeHead(200, head);
+  
 bufferToStream(await Body.transformToByteArray()).pipe(res)
 
+const { ContentRange, Body } = await getObjectRange({
+  key,
+  ...nextRange,
+});
 
 
+rangeAndLength = getRangeAndLength(ContentRange);
 
-
- //console.log("Body.transformToByteArray", Body.transformToByteArray());
-
-
-
-
-
- 
- 
- //flux.pipe(res)
-
-
-
-  rangeAndLength = getRangeAndLength(ContentRange);
 }
 
-
-//fs.createReadStream(keyFile).pipe(res);
 
 
 
 }
 
 
-/* export const main = async () => {
-  await downloadInChunks({
-    bucket: "my-cool-bucket",
-    key: "my-cool-object.txt",
-  });
-};
- */
 
-/* */
+
+}
+
+
 module.exports = {
     resetAllS3:resetAllS3,
     saveToS3:saveToS3,
