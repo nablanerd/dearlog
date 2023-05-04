@@ -217,11 +217,13 @@ res.writeHead(200, head);
 
  //2023-05-04T17:22:47.709939+00:00 app[web.1]: Body.transformToWebStream ReadableStream { locked: false, state: 'readable', supportsBYOB: false }
 
- const flux = Body.transformToByteArray()
+const es = require('event-stream')
+, reader = es.readArray(await Body.transformToByteArray())
 
- console.log("Body.transformToByteArray", flux);
+reader.pipe(res)
 
- console.log("typeof flux", typeof flux);
+
+
 
 
  //console.log("Body.transformToByteArray", Body.transformToByteArray());
