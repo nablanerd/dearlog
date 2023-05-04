@@ -124,14 +124,18 @@ DOWNLOAD
 
     //const audioKey = "2021_11_10_16_16_17_595.webm"
   
-    _checkout_object(key)
+
+    _hyperStreaming(key, req,res)
+
+
+  /*   _checkout_object(key)
     .then(()=> {
   
       console.log( "fs.existsSync(audioPath)", fs.existsSync(key));
     
       _streaming(key, req,res)
     
-    })
+    }) */
   
   
   })
@@ -193,6 +197,51 @@ function  _checkout_object  (key) {
     })
   }
 
+
+  async function  _hyperStreaming(key, req,res)
+  {
+
+
+    const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'audio/webm',
+  };
+  res.writeHead(200, head);
+
+
+console.log("212 key", key);
+
+const filePath = path.join(__dirname, key);
+
+console.log("filePath", filePath);
+
+  const writeStream = fs.createWriteStream(
+    filePath  
+    ).on("error", (err) => console.error(err));
+
+  let rangeAndLength = { start: -1, end: -1, length: -1 };
+
+  while (!isComplete(rangeAndLength)) {
+    const { end } = rangeAndLength;
+    const nextRange = { start: end + 1, end: end + oneMB };
+
+    console.log(`Downloading bytes ${nextRange.start} to ${nextRange.end}`);
+
+    const { ContentRange, Body } = await getObjectRange({
+      key,
+      ...nextRange,
+    });
+
+    writeStream.write(await Body.transformToByteArray()).pipe(res);
+    rangeAndLength = getRangeAndLength(ContentRange);
+  }
+
+
+  //fs.createReadStream(keyFile).pipe(res);
+
+
+
+  }
 
 function _streaming  (key, req,res) {
   const keyFile = "/app/server/"+key
