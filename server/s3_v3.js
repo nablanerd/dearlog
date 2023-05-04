@@ -20,6 +20,7 @@ const client = new S3Client({
 });
 
 
+const url = require('url');
  
 (async () => {
    
@@ -129,7 +130,7 @@ const isComplete = ({ end, length }) => end === length - 1;
 // and end of the byte range to be downloaded.
 const downloadInChunks = async ({ bucket, key }) => {
   const writeStream = fs.createWriteStream(
-    fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
+    url.fileURLToPath(new URL(`./${key}` /* , import.meta.url */))
   ).on("error", (err) => console.error(err));
 
   let rangeAndLength = { start: -1, end: -1, length: -1 };
