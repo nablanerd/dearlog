@@ -1,6 +1,7 @@
 const s3 = require('./s3_v3.js');
 const convertDate2Objet = require('../my_modules/date')
 const fs = require('fs');
+const path = require("path");
 
 
 /* 
