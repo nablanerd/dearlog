@@ -7,5 +7,5 @@ _project/
 .archive/
 archive/
 sandbox
-.env/
-.env.bak/
+.env
+.env.bak
